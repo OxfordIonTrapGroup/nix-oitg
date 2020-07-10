@@ -42,8 +42,8 @@ the `oitg-client-dev` derivation:
 
 First, clone all the necessary the repositories into a directory of
 your choice. (We tend to use `~/scratch` on lab machines by
-convention.) You'll probably want `artiq`, `artiq-comtools`, `ndscan`,
-`oitg`, `oxart`, and `sipyco`.
+convention.) You'll probably want `artiq`, `ndscan`, `oitg`,
+`oxart`, and `sipyco`; possibly `artiq-comtools` and `wand` as well.
 
 You can then use `nix-shell` to open a shell with all these
 directories on the Python path, and (at the time of writing) their
