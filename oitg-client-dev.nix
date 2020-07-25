@@ -13,6 +13,6 @@ in pkgs.mkShell {
   shellHook = ''
       source ${set-scratch-dir};
       export PYTHONPATH="$scratch_dir/artiq:$scratch_dir/artiq-comtools:$scratch_dir/ndscan:
-        $PYTHONPATH:$scratch_dir/oitg:$scratch_dir/oxart:$scratch_dir/sipyco:$scratch_dir/wand"
+        $PYTHONPATH:$scratch_dir/oitg:$scratch_dir/oxart:$scratch_dir/pyqtgraph:$scratch_dir/sipyco:$scratch_dir/wand"
   '';
 }
