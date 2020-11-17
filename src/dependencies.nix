@@ -1,8 +1,8 @@
 # Contains lists of dependencies for various common configurations.
 #
 # Client refers to only ARITQ client tools (dashboard, RPC tool, etc., but not master),
-# Full to a complete ARITQ master installation including the core device kernel
-# toolchain, tools for flashing FPGAs, etc.
+# Master to a complete ARTIQ master installation including the core device kernel
+# toolchain, tools for flashing FPGAs, etc. (but not building gateware).
 # 
 # The `artiq-*` names refer to only non-Oxford dependencies, whereas `oitg-*` also
 # includes our own libraries (for being able to install the latter in dev mode).
@@ -19,11 +19,39 @@ in rec {
         numpy
         numba
         paramiko
+        prettytable
+        python-Levenshtein
+        quamash
+        scipy
+        sphinx
+        sphinx_rtd_theme
+        pyzmq
+      ]) ++ (with artiq-fast; [ pyqtgraph-qt5 pythonparser ])))
+    pkgs.zeromq
+  ];
+  artiq-master = [
+    (pkgs.python3.withPackages (ps:
+      (with ps; [
+        dateutil
+        h5py
+        numpy
+        numba
+        paramiko
+        prettytable
         python-Levenshtein
         quamash
         scipy
         pyzmq
-      ]) ++ (with artiq-fast; [ pyqtgraph-qt5 pythonparser ])))
+      ]) ++ (with artiq-fast; [ lit llvmlite-artiq pythonparser ])))
+    (with artiq-fast; [
+      cargo
+      rustc
+      binutils-or1k
+      binutils-arm
+      llvm-or1k
+      outputcheck
+    ])
+    pkgs.gnumake
     pkgs.zeromq
   ];
 }
