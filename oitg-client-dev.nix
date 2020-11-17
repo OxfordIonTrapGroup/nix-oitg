@@ -12,7 +12,6 @@ in pkgs.mkShell {
   buildInputs = [dependencies.artiq-client pkgs.qt5.full];
   shellHook = ''
       source ${set-scratch-dir};
-      export PYTHONPATH="$scratch_dir/artiq:$scratch_dir/artiq-comtools:$scratch_dir/ndscan:
-        $PYTHONPATH:$scratch_dir/oitg:$scratch_dir/oxart:$scratch_dir/pyqtgraph:$scratch_dir/sipyco:$scratch_dir/wand"
+      export PYTHONPATH="$scratch_dir/artiq:$scratch_dir/artiq-comtools:$scratch_dir/ndscan:$scratch_dir/oitg:$scratch_dir/oxart:$scratch_dir/pyqtgraph:$scratch_dir/sipyco:$scratch_dir/wand:$PYTHONPATH"
   '';
 }
