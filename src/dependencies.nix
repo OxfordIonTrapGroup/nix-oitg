@@ -9,7 +9,13 @@
 
 { pkgs }:
 
-let artiq-fast = import <artiq-fast> { inherit pkgs; };
+let
+  artiq-fast = import <artiq-fast> { inherit pkgs; };
+  # qasync not exported from nix-scripts@58aabaa.
+  afppd = import <artiq-fast/pkgs/python-deps.nix> {
+    inherit (pkgs) stdenv fetchFromGitHub python3Packages fetchgit;
+    misoc-new = true;
+  };
 in rec {
   artiq-client = [
     (pkgs.python3.withPackages (ps:
@@ -21,12 +27,12 @@ in rec {
         paramiko
         prettytable
         python-Levenshtein
-        quamash
         scipy
         sphinx
         sphinx_rtd_theme
         pyzmq
-      ]) ++ (with artiq-fast; [ pyqtgraph-qt5 pythonparser ])))
+      ]) ++ (with artiq-fast; [ pyqtgraph-qt5 pythonparser ])
+      ++ [ afppd.qasync ]))
     pkgs.zeromq
   ];
   artiq-master = [
@@ -39,10 +45,10 @@ in rec {
         paramiko
         prettytable
         python-Levenshtein
-        quamash
         scipy
         pyzmq
-      ]) ++ (with artiq-fast; [ lit llvmlite-artiq pythonparser ])))
+      ]) ++ (with artiq-fast; [ lit llvmlite-artiq pythonparser ])
+      ++ [ afppd.qasync ]))
     (with artiq-fast; [
       cargo
       rustc
