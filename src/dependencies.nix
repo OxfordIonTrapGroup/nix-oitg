@@ -48,6 +48,7 @@ in rec {
       binutils-or1k
       binutils-arm
       llvm-or1k
+      openocd
       outputcheck
     ])
     pkgs.gnumake
