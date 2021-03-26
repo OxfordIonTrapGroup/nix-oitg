@@ -9,8 +9,7 @@
 
 { pkgs }:
 
-let
-  artiq-fast = import <artiq-fast> { inherit pkgs; };
+let artiq-fast = import <artiq-fast> { inherit pkgs; };
 in rec {
   artiq-client = [
     (pkgs.python3.withPackages (ps:
@@ -32,6 +31,7 @@ in rec {
   artiq-master = [
     (pkgs.python3.withPackages (ps:
       (with ps; [
+        aiohttp
         dateutil
         h5py
         numpy
@@ -40,8 +40,10 @@ in rec {
         prettytable
         python-Levenshtein
         scipy
+        pyserial
         pyzmq
-      ]) ++ (with artiq-fast; [ lit llvmlite-artiq pythonparser qasync ])))
+      ])
+      ++ (with artiq-fast; [ lit llvmlite-artiq misoc pythonparser qasync ])))
     (with artiq-fast; [
       cargo
       rustc
