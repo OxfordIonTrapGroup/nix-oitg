@@ -5,7 +5,7 @@
 # libjulia dependencies
 , libunwind, readline, utf8proc, zlib
 # standard library dependencies
-, curl, fftwSinglePrec, fftw, libgit2, mpfr, openlibm, openspecfun, pcre2
+, curl, fftwSinglePrec, fftw, libgit2, mpfr, openlibm, openspecfun, pcre2, nghttp2
 # linear algebra
 , blas, lapack, arpack
 # Darwin frameworks
@@ -116,7 +116,7 @@ stdenv.mkDerivation rec {
 
   LD_LIBRARY_PATH = makeLibraryPath [
     arpack fftw fftwSinglePrec libgit2 mpfr blas openlibm
-    openspecfun pcre2 lapack
+    openspecfun pcre2 lapack curl nghttp2
   ];
 
   # Julia's tests require read/write access to $HOME
