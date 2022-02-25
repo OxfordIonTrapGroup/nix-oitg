@@ -1,13 +1,9 @@
 {
   description = "Environment for running ARTIQ master in lab one/HOA2";
 
-  inputs.artiq = {
-    url =
-      "git+ssh://gitlab.physics.ox.ac.uk/ion-trap/artiq.git?ref=dpn/nix-riscv";
-  };
-
+  inputs.artiq.url = "git+ssh://gitlab.physics.ox.ac.uk/ion-trap/artiq.git?ref=dpn/nix-riscv";
   outputs = { self, artiq }:
-    let pkgs = artiq.pkgs;
+    let pkgs = artiq.inputs.nixpkgs.legacyPackages.x86_64-linux;
     in {
       devShell.x86_64-linux = pkgs.mkShell {
         name = "artiq-dev-shell";
@@ -45,6 +41,5 @@
     extra-trusted-public-keys =
       "nixbld.m-labs.hk-1:5aSRVA5b320xbNvu30tqxVPXpld73bhtOeH6uAjRyHc=";
     extra-substituters = "https://nixbld.m-labs.hk";
-    extra-sandbox-paths = "/opt";
   };
 }

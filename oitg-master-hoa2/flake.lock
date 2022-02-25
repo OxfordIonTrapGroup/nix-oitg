@@ -12,11 +12,11 @@
         "src-pythonparser": "src-pythonparser"
       },
       "locked": {
-        "lastModified": 1645638899,
-        "narHash": "sha256-TL3QPcKNUeiyQ4B4m9sPjCsOEJTXOEFoZINKgGWzZBw=",
+        "lastModified": 1645753129,
+        "narHash": "sha256-9WFC+YalTkVMDpyNFkPxzN4pqUtmFnTpvE3RgQUJTpg=",
         "ref": "dpn/nix-riscv",
-        "rev": "339dfc73fe7d9fe0f7efe2e8f0156dabbe4468f6",
-        "revCount": 9148,
+        "rev": "178cc0cb661386436cdab6009b399a9b4f39c561",
+        "revCount": 9152,
         "type": "git",
         "url": "ssh://gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
       },
