@@ -1,7 +1,7 @@
 {
   description = "Environment for running ARTIQ master in lab one/HOA2";
 
-  inputs.artiq.url = "git+ssh://gitlab.physics.ox.ac.uk/ion-trap/artiq.git?ref=dpn/nix-riscv";
+  inputs.artiq.url = "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git?ref=dpn/nix-riscv";
   outputs = { self, artiq }:
     let pkgs = artiq.inputs.nixpkgs.legacyPackages.x86_64-linux;
     in {
