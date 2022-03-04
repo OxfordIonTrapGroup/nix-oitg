@@ -22,4 +22,8 @@ To activate, run:
     ${BLUE}source artiq-env/bin/activate${NO_COLOR}
 Packages can then be installed with:
     ${BLUE}pip install -e /path/to/pkg/${NO_COLOR}
+Deactivate the virtualenv with:
+    ${BLUE}deactivate${NO_COLOR}
+Exit the nix environment with:
+    ${BLUE}exit${NO_COLOR}
 """
