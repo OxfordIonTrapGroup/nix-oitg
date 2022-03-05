@@ -1,30 +1,30 @@
 {
   description = "Environment for running ARTIQ master in lab one/HOA2";
 
-  inputs.artiq.url = "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git?ref=dpn/nix-riscv";
+  inputs.artiq.url =
+    "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git?ref=dpn/nix-riscv";
   outputs = { self, artiq }:
-    let
-      pkgs = artiq.inputs.nixpkgs.legacyPackages.x86_64-linux;
+    let pkgs = artiq.inputs.nixpkgs.legacyPackages.x86_64-linux;
     in {
       devShell.x86_64-linux = pkgs.mkShell {
         name = "artiq-dev-shell";
         buildInputs = [
-          (pkgs.python38.withPackages (ps:
+          (pkgs.python3.withPackages (ps:
             (with ps; [
               aiohttp
               dateutil
-              influxdb
               h5py
-              llvmlite
+              influxdb
+              # FIXME: numba, currently causes conflict with llvmlite-new.
               numpy
               paramiko
               prettytable
               python-Levenshtein
-              pip
               scipy
               pyserial
               pyzmq
             ]) ++ (with artiq.packages.x86_64-linux; [
+              llvmlite-new
               migen
               misoc
               qasync
@@ -36,8 +36,8 @@
           artiq.packages.x86_64-linux.openocd-bscanspi
         ];
         shellHook = ''
-            ./configure.sh
-            source ./artiq-env/bin/activate
+          ./configure.sh
+          source ./artiq-env/bin/activate
         '';
       };
     };
