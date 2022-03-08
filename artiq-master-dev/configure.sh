@@ -1,29 +1,33 @@
 #!/bin/bash
 
-BLUE='\033[1;34m'
-NO_COLOR='\033[0m'
+WARN=$(tput setaf 172)$(tput bold)
+BLUE=$(tput setaf 4)
+RESET=$(tput sgr0)
 
-NIX_PYTHON_PATH=$(which python)
-NIX_ENV_PATH="${NIX_PYTHON_PATH%/bin/python}"
-NIX_SITE_PKGS="$NIX_ENV_PATH/lib/python3.8/site-packages/"
+if [ -z "$1" ]; then
+    echo "Expected argument with Nix python-env path."
+    echo "${WARN}This script should be called via the Nix flake only${RESET}."
+    exit 1
+fi
+NIX_SITE_PKGS=$1
 
-if [ -d "$(pwd)/artiq-master-dev/" ] ; then
-     echo "Using existing artiq-master-dev"
+venv_path = "$(pwd)/artiq-master-dev/"
+if [ -d venv_path ]; then
+    echo "Using existing venv: ${venv_path}"
 else
-    echo "artiq-master-dev not found"
-    echo "Creating new artiq-master-dev..."
-    python -m venv artiq-master-dev
+    echo "Creating new venv: ${venv_path}"
+    python -m venv ${venv_path}
 fi
 
-echo ${NIX_SITE_PKGS} >> $(pwd)/artiq-master-dev/lib/python3.8/site-packages/nix.pth
+echo ${NIX_SITE_PKGS} >> ${venv_path}/lib/*/site-packages/nix.pth
 
-printf """${BLUE}artiq-master-dev${NO_COLOR} installed to ${BLUE}$(pwd)${NO_COLOR}
+printf """${BLUE}artiq-master-dev${RESET} installed to ${BLUE}$(pwd)${RESET}
 To activate, run:
-    ${BLUE}source artiq-master-dev/bin/activate${NO_COLOR}
+    ${BLUE}source artiq-master-dev/bin/activate${RESET}
 Packages can then be installed with:
-    ${BLUE}pip install -e /path/to/pkg/${NO_COLOR}
+    ${BLUE}pip install -e /path/to/pkg/${RESET}
 Deactivate the virtualenv with:
-    ${BLUE}deactivate${NO_COLOR}
+    ${BLUE}deactivate${RESET}
 Exit the nix environment with:
-    ${BLUE}exit${NO_COLOR}
+    ${BLUE}exit${RESET}
 """
