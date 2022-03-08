@@ -22,17 +22,14 @@
           pyzmq
         ]) ++ (with artiq.packages.x86_64-linux; [
           llvmlite-new
-          migen
-          misoc
+          misoc  # For flterm.
           qasync
-          microscope
         ])));
     in {
       devShell.x86_64-linux = pkgs.mkShell {
         name = "artiq-dev-shell";
         buildInputs = [
           python-env
-          pkgs.llvmPackages_11.clang-unwrapped
           pkgs.llvm_11
           pkgs.lld_11
           artiq.packages.x86_64-linux.openocd-bscanspi
