@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 warn=$(tput setaf 172)$(tput bold)
 blue=$(tput setaf 4)
