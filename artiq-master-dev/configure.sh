@@ -9,9 +9,9 @@ if [ -z "$1" ]; then
     echo "${WARN}This script should be called via the Nix flake only${RESET}."
     exit 1
 fi
-NIX_SITE_PKGS=$1
+nix_site_pkgs=$1
 
-venv_path = "$(pwd)/artiq-master-dev/"
+venv_path="$(pwd)/artiq-master-dev"
 if [ -d venv_path ]; then
     echo "Using existing venv: ${venv_path}"
 else
@@ -19,7 +19,12 @@ else
     python -m venv ${venv_path}
 fi
 
-echo ${NIX_SITE_PKGS} >> ${venv_path}/lib/*/site-packages/nix.pth
+# Always update the .pth file we use for the venv to be able to find packages
+# provided via Nix to make sure it continues to reference the right set of
+# packages if the definition in the flake (or the Python version, etc.) is
+# updated.
+venv_site_packages=(${venv_path}/lib/python3*/site-packages)
+echo ${nix_site_pkgs} > ${venv_site_packages}/nix.pth
 
 printf """${BLUE}artiq-master-dev${RESET} installed to ${BLUE}$(pwd)${RESET}
 To activate, run:
