@@ -38,8 +38,8 @@
           artiq.packages.x86_64-linux.openocd-bscanspi
         ];
         shellHook = ''
-          ./configure.sh ${python-env}/${python-env.sitePackages}
-          source ./artiq-env/bin/activate
+          ${./configure.sh} ${python-env}/${python-env.sitePackages} || exit 1
+          source ./artiq-master-dev/bin/activate || exit 1
         '';
       };
     };

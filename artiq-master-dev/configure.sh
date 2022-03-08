@@ -1,18 +1,18 @@
 #!/bin/bash
 
-WARN=$(tput setaf 172)$(tput bold)
-BLUE=$(tput setaf 4)
-RESET=$(tput sgr0)
+warn=$(tput setaf 172)$(tput bold)
+blue=$(tput setaf 4)
+reset=$(tput sgr0)
 
 if [ -z "$1" ]; then
     echo "Expected argument with Nix python-env path."
-    echo "${WARN}This script should be called via the Nix flake only${RESET}."
+    echo "${warn}This script should be called via the Nix flake only${reset}."
     exit 1
 fi
 nix_site_pkgs=$1
 
 venv_path="$(pwd)/artiq-master-dev"
-if [ -d venv_path ]; then
+if [ -d ${venv_path} ]; then
     echo "Using existing venv: ${venv_path}"
 else
     echo "Creating new venv: ${venv_path}"
@@ -26,13 +26,12 @@ fi
 venv_site_packages=(${venv_path}/lib/python3*/site-packages)
 echo ${nix_site_pkgs} > ${venv_site_packages}/nix.pth
 
-printf """${BLUE}artiq-master-dev${RESET} installed to ${BLUE}$(pwd)${RESET}
+printf """${blue}artiq-master-dev${reset} installed to ${blue}$(pwd)${reset}
 To activate, run:
-    ${BLUE}source artiq-master-dev/bin/activate${RESET}
+    ${blue}source artiq-master-dev/bin/activate${reset}
 Packages can then be installed with:
-    ${BLUE}pip install -e /path/to/pkg/${RESET}
+    ${blue}pip install -e /path/to/pkg/${reset}
 Deactivate the virtualenv with:
-    ${BLUE}deactivate${RESET}
-Exit the nix environment with:
-    ${BLUE}exit${RESET}
+    ${blue}deactivate${reset}
+Exit the nix environment with ${blue}exit${reset} or ${blue}Ctrl+D${reset}.
 """
