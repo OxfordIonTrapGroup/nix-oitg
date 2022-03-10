@@ -25,8 +25,7 @@
           misoc  # For flterm.
           qasync
         ])));
-    in {
-      devShell.x86_64-linux = nixpkgs.mkShell {
+      artiq-master-dev = nixpkgs.mkShell {
         name = "artiq-dev-shell";
         buildInputs = [
           python-env
@@ -39,10 +38,16 @@
             echo "OITG_SCRATCH_DIR environment variable not set, defaulting to ~/scratch."
             export OITG_SCRATCH_DIR=$HOME/scratch
           fi
-          ${./configure.sh} ${python-env} ${python-env.sitePackages} || exit 1
+          ${./src/setup-artiq-master-dev.sh} ${python-env} ${python-env.sitePackages} || exit 1
           source $OITG_SCRATCH_DIR/venv/artiq-master-dev/bin/activate || exit 1
         '';
       };
+    in {
+      # Allow explicit use from outside the flake, in case we want to add other targets
+      # or build on this in the future.
+      inherit artiq-master-dev;
+
+      defaultPackage.x86_64-linux = artiq-master-dev;
     };
 
   nixConfig = {
