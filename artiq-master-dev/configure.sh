@@ -27,7 +27,7 @@ nix_site_pkgs_subdir=$2
 venv_root="${OITG_SCRATCH_DIR}/venv"
 mkdir -p "${venv_root}"
 venv_path="${venv_root}/artiq-master-dev"
-if [ -d "${venv_path}" ]; then
+if [[ -d "${venv_path}" ]]; then
     diag "Using existing venv: ${venv_path}."
 else
     diag "Creating new venv: ${venv_path}."
@@ -39,7 +39,7 @@ fi
 # packages if the definition in the flake (or the Python version, etc.) is
 # updated.
 venv_site_packages="${venv_path}/${nix_site_pkgs_subdir}"
-if [ ! -d ${venv_site_packages} ]; then
+if [[ ! -d ${venv_site_packages} ]]; then
     warn "venv site-packages directory not found in expected path,"
     warn "'${venv_site_packages}'."
     diag "If the Python version was updated in the Nix flake, remove the venv directory"
