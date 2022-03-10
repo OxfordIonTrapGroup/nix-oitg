@@ -5,8 +5,8 @@
     "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git?ref=dpn/nix-riscv";
   outputs = { self, artiq }:
     let
-      pkgs = artiq.inputs.nixpkgs.legacyPackages.x86_64-linux;
-      python-env = (pkgs.python3.withPackages (ps:
+      nixpkgs = artiq.inputs.nixpkgs.legacyPackages.x86_64-linux;
+      python-env = (nixpkgs.python3.withPackages (ps:
         (with ps; [
           aiohttp
           dateutil
@@ -26,12 +26,12 @@
           qasync
         ])));
     in {
-      devShell.x86_64-linux = pkgs.mkShell {
+      devShell.x86_64-linux = nixpkgs.mkShell {
         name = "artiq-dev-shell";
         buildInputs = [
           python-env
-          pkgs.llvm_11
-          pkgs.lld_11
+          nixpkgs.llvm_11
+          nixpkgs.lld_11
           artiq.packages.x86_64-linux.openocd-bscanspi
         ];
         shellHook = ''
