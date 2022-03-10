@@ -12,12 +12,14 @@ if [ -z "$1" ]; then
 fi
 nix_site_pkgs=$1
 
-venv_path="$(pwd)/artiq-master-dev"
+venv_root="${OITG_SCRATCH_DIR}/venv"
+mkdir -p "${venv_root}"
+venv_path="${venv_root}/artiq-master-dev"
 if [ -d ${venv_path} ]; then
     echo "Using existing venv: ${venv_path}"
 else
     echo "Creating new venv: ${venv_path}"
-    python -m venv ${venv_path}
+    python -m venv "${venv_path}"
 fi
 
 # Always update the .pth file we use for the venv to be able to find packages
