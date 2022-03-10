@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-warn=$(tput setaf 172)$(tput bold)
+warn=$(tput setaf 9)$(tput bold)
 blue=$(tput setaf 4)
 reset=$(tput sgr0)
 
