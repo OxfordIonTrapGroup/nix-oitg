@@ -39,7 +39,7 @@
             echo "OITG_SCRATCH_DIR environment variable not set, defaulting to ~/scratch."
             export OITG_SCRATCH_DIR=$HOME/scratch
           fi
-          ${./configure.sh} ${python-env}/${python-env.sitePackages} || exit 1
+          ${./configure.sh} ${python-env} ${python-env.sitePackages} || exit 1
           source $OITG_SCRATCH_DIR/venv/artiq-master-dev/bin/activate || exit 1
         '';
       };
