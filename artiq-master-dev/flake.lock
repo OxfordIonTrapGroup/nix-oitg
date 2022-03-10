@@ -12,18 +12,18 @@
         "src-pythonparser": "src-pythonparser"
       },
       "locked": {
-        "lastModified": 1645753129,
-        "narHash": "sha256-9WFC+YalTkVMDpyNFkPxzN4pqUtmFnTpvE3RgQUJTpg=",
+        "lastModified": 1646074543,
+        "narHash": "sha256-f1W8M8Lur7G/Zb9EJXfDqSqJsCxY/GmInM6zMqFPiDk=",
         "ref": "dpn/nix-riscv",
-        "rev": "178cc0cb661386436cdab6009b399a9b4f39c561",
-        "revCount": 9152,
+        "rev": "02bd26a87feec7f890b488b387f08c3a2fe2f66b",
+        "revCount": 9156,
         "type": "git",
-        "url": "ssh://gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
+        "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
       },
       "original": {
         "ref": "dpn/nix-riscv",
         "type": "git",
-        "url": "ssh://gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
+        "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
       }
     },
     "artiq-comtools": {
