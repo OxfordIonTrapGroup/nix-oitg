@@ -1,9 +1,15 @@
 {
   description = "Environment for running ARTIQ master in lab one/HOA2";
 
-  inputs.artiq.url =
-    "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git?ref=dpn/nix-riscv";
-  outputs = { self, artiq }:
+  inputs = {
+    artiq.url =
+      "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git?ref=dpn/nix-riscv";
+
+    # Julia 1.7 is not available from nixpkgs 21.11; this second copy can be removed
+    # once it is.
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+  };
+  outputs = { self, artiq, nixpkgs-unstable }:
     let
       nixpkgs = artiq.inputs.nixpkgs.legacyPackages.x86_64-linux;
       python-env = (nixpkgs.python3.withPackages (ps:
@@ -32,6 +38,7 @@
           nixpkgs.llvm_11
           nixpkgs.lld_11
           artiq.packages.x86_64-linux.openocd-bscanspi
+          nixpkgs-unstable.legacyPackages.x86_64-linux.julia_17-bin
         ];
         shellHook = ''
           if [ -z "$OITG_SCRATCH_DIR" ]; then
