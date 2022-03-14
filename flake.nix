@@ -115,7 +115,7 @@
           oxart-devices
         ]));
       artiq-master-dev = nixpkgs.mkShell {
-        name = "artiq-dev-shell";
+        name = "artiq-master-dev";
         buildInputs = [
           python-env
           artiq.packages.x86_64-linux.openocd-bscanspi
