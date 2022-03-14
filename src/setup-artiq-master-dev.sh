@@ -25,13 +25,20 @@ nix_python_root=$1
 nix_site_pkgs_subdir=$2
 
 venv_root="${OITG_SCRATCH_DIR}/venv"
-mkdir -p "${venv_root}"
 venv_path="${venv_root}/artiq-master-dev"
 if [[ -d "${venv_path}" ]]; then
-    diag "Using existing venv: ${venv_path}."
+    diag "Using existing Python venv: ${venv_path}."
 else
-    diag "Creating new venv: ${venv_path}."
-    python -m venv "${venv_path}"
+    echo "Creating new Python venv: ${venv_path}."
+    read -n 1 -p "Continue? [Y/n] " reply
+    if [ "$reply" != "" ]; then echo; fi  # Line break
+    if [ "$reply" = "${reply#[Nn]}" ]; then
+        mkdir -p "${venv_root}"
+        python -m venv "${venv_path}"
+    else
+        warn "Python venv not created; set OITG_SCRATCH_DIR environment variable to target path."
+        exit 2
+    fi
 fi
 
 # Always update the .pth file we use for the venv to be able to find packages
