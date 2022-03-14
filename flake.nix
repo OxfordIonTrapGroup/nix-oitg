@@ -3,7 +3,7 @@
 
   inputs = {
     artiq.url =
-      "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git?ref=dpn/nix-riscv";
+      "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git?ref=dpn/nix-python-overlay";
 
     # Julia 1.7 is not available from nixpkgs 21.11; this second copy can be removed
     # once it is.
@@ -11,14 +11,15 @@
   };
   outputs = { self, artiq, nixpkgs-unstable }:
     let
-      nixpkgs = artiq.inputs.nixpkgs.legacyPackages.x86_64-linux;
+      nixpkgs = artiq.nixpkgs;
       python-env = (nixpkgs.python3.withPackages (ps:
         (with ps; [
           aiohttp
           dateutil
           h5py
           influxdb
-          # FIXME: numba, currently causes conflict with llvmlite-new.
+          llvmlite
+          numba
           numpy
           paramiko
           prettytable
@@ -27,7 +28,6 @@
           pyserial
           pyzmq
         ]) ++ (with artiq.packages.x86_64-linux; [
-          llvmlite-new
           misoc  # For flterm.
           qasync
         ])));

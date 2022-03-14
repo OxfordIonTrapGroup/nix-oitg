@@ -12,16 +12,16 @@
         "src-pythonparser": "src-pythonparser"
       },
       "locked": {
-        "lastModified": 1646074543,
-        "narHash": "sha256-f1W8M8Lur7G/Zb9EJXfDqSqJsCxY/GmInM6zMqFPiDk=",
-        "ref": "dpn/nix-riscv",
-        "rev": "02bd26a87feec7f890b488b387f08c3a2fe2f66b",
-        "revCount": 9156,
+        "lastModified": 1647267510,
+        "narHash": "sha256-NGWjOC6pAp4/1/Fk7ug1+Cb9Edlz8DXxo86wecFl7TI=",
+        "ref": "dpn/nix-python-overlay",
+        "rev": "06c07f402a3aadbf4e44079323a9500b47308866",
+        "revCount": 9157,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
       },
       "original": {
-        "ref": "dpn/nix-riscv",
+        "ref": "dpn/nix-python-overlay",
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
       }
