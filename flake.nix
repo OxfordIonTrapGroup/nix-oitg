@@ -12,7 +12,7 @@
     # Oxford-flavoured ARTIQ packages. We pull them in as flake inputs so we can
     # conveniently update them using `nix lock`, etc., rather than manually having to
     # track hashes.
-    sipyco.url = "github:m-labs/sipyco";
+    sipyco.url = "github:OxfordIonTrapGroup/sipyco";
     sipyco.inputs.nixpkgs.follows = "artiq/nixpkgs";
     artiq.inputs.sipyco.follows = "sipyco";
     src-andorEmccd = {

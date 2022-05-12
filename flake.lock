@@ -121,15 +121,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1644649772,
-        "narHash": "sha256-LE9L5bDSunCPEnuf5Ed8enTAXA2vkTSmjvqPX9ILO0Y=",
-        "owner": "m-labs",
+        "lastModified": 1651956981,
+        "narHash": "sha256-eyOLvAbRzxmxV7RIakr+gr6OfUGS5stxSHzUC6XgFGw=",
+        "owner": "OxfordIonTrapGroup",
         "repo": "sipyco",
-        "rev": "8e4382352bc64bd01c9db35d9c9b0ef42b8b9d3b",
+        "rev": "4de31df51b9f500fb54d8e5e8c229d722c34c9a2",
         "type": "github"
       },
       "original": {
-        "owner": "m-labs",
+        "owner": "OxfordIonTrapGroup",
         "repo": "sipyco",
         "type": "github"
       }
