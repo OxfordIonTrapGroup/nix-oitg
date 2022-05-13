@@ -2,8 +2,7 @@
   description = "Environment for running ARTIQ master in lab one/HOA2";
 
   inputs = {
-    artiq.url =
-      "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git?ref=dpn/nix-python-overlay";
+    artiq.url = "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git";
 
     # Julia 1.7 is not available from nixpkgs 21.11; this second copy can be removed
     # once it is.
