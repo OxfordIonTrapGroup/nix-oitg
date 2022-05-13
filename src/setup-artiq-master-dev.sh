@@ -1,6 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
+# Coloured console output.
 warning=$(tput setaf 1)$(tput bold)
 grey=$(tput setaf 7)
 blue=$(tput setaf 4)
@@ -16,6 +17,7 @@ function diag()
     echo "${grey}$1${reset}"
 }
 
+# Parse parameters.
 if [[ -z ${1:-} || -z ${2:-} ]]; then
     warn "Expected arguments with Nix python-env path and relative site-packages path."
     diag "This script should be called via the Nix flake only."
@@ -24,8 +26,10 @@ fi
 nix_python_root=$1
 nix_site_pkgs_subdir=$2
 
+# Create/activate venv.
 venv_root="${OITG_SCRATCH_DIR}/venv"
-venv_path="${venv_root}/artiq-master-dev"
+venv_name="artiq-master-dev"
+venv_path="${venv_root}/${venv_name}"
 if [[ -d "${venv_path}" ]]; then
     diag "Using existing Python venv: ${venv_path}."
 else
@@ -56,12 +60,5 @@ if [[ ! -d ${venv_site_packages} ]]; then
 fi
 echo "${nix_python_root}/${nix_site_pkgs_subdir}" > ${venv_site_packages}/nix.pth
 
-printf """${blue}artiq-master-dev${reset} installed to ${blue}$(pwd)${reset}
-To activate, run:
-    ${blue}source artiq-master-dev/bin/activate${reset}
-Packages can then be installed with:
-    ${blue}pip install -e /path/to/pkg/${reset}
-Deactivate the virtualenv with:
-    ${blue}deactivate${reset}
-Exit the nix environment with ${blue}exit${reset} or ${blue}Ctrl+D${reset}.
-"""
+echo "Activated nix-oitg Nix environment with nested Python venv ${blue}${venv_name}${reset}."
+echo "Exit the Nix shell with ${blue}exit${reset} or ${blue}Ctrl+D${reset}."
