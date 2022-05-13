@@ -38,7 +38,30 @@ else
     if [ "$reply" = "${reply#[Nn]}" ]; then
         mkdir -p "${venv_root}"
         python -m venv "${venv_path}"
+        printf """
+Created nested Python virtual environment (venv). ARTIQ itself and commonly
+used packages such as ${blue}ndscan${reset}, ${blue}oitg${reset} and ${blue}oxart${reset} are already installed via Nix,
+but additional packages not distributed via Nix can be installed using ${blue}pip${reset}
+as usual.
 
+This can be particularly useful to install packages in development mode while
+actively working on code (e.g. in oxart). For instance, after cloning the
+oxart repository to ~/scratch/oxart, installing it in development mode using
+    ${blue}pip install -e ~/scratch/oxart${reset}
+will take precedence over the Nix-provided version inside this environment,
+such that changes to the code in ~/scratch/oxart immediately take effect.
+
+The venv should always be used in conjunction with the Nix development shell
+(${blue}nix develop${reset}), which in fact automatically activates the venv. Do not manually
+activate the venv outside of Nix, nor deactivate the venv while in the Nix shell.
+
+The venv directory ${blue}${venv_path}${reset} is not
+managed by Nix and persists across ${blue}nix develop${reset} invocations. To revert all
+libraries to the versions specified in the ${blue}nix-oitg${reset} flake (and remove any
+additionally installed libraries), simply delete the directory; it will be
+re-created on the next ${blue}nix develop${reset} run.
+
+"""
     else
         warn "Python venv not created; set OITG_SCRATCH_DIR environment variable to target path."
         exit 2
