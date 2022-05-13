@@ -35,7 +35,6 @@ if [[ -d "${venv_path}" ]]; then
 else
     echo "Creating new Python venv: ${venv_path}."
     read -n 1 -p "Continue? [Y/n] " reply
-    if [ "$reply" != "" ]; then echo; fi  # Line break
     if [ "$reply" = "${reply#[Nn]}" ]; then
         mkdir -p "${venv_root}"
         python -m venv "${venv_path}"
