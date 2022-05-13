@@ -61,4 +61,4 @@ fi
 echo "${nix_python_root}/${nix_site_pkgs_subdir}" > ${venv_site_packages}/nix.pth
 
 echo "Activated nix-oitg Nix environment with nested Python venv ${blue}${venv_name}${reset}."
-echo "Exit the Nix shell with ${blue}exit${reset} or ${blue}Ctrl+D${reset}."
+echo "To exit the Nix shell, use ${blue}exit${reset} or ${blue}Ctrl+D${reset}."
