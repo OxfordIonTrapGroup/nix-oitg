@@ -27,7 +27,7 @@ nix_python_root=$1
 nix_site_pkgs_subdir=$2
 
 # Create/activate venv.
-venv_root="${OITG_SCRATCH_DIR}/venv"
+venv_root="${OITG_SCRATCH_DIR}/nix-oitg-venvs"
 venv_name="artiq-master-dev"
 venv_path="${venv_root}/${venv_name}"
 if [[ -d "${venv_path}" ]]; then
@@ -39,6 +39,7 @@ else
     if [ "$reply" = "${reply#[Nn]}" ]; then
         mkdir -p "${venv_root}"
         python -m venv "${venv_path}"
+
     else
         warn "Python venv not created; set OITG_SCRATCH_DIR environment variable to target path."
         exit 2

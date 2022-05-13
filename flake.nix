@@ -129,7 +129,7 @@
           ${
             ./src/setup-artiq-master-dev.sh
           } ${python-env} ${python-env.sitePackages} || exit 1
-          source $OITG_SCRATCH_DIR/venv/artiq-master-dev/bin/activate || exit 1
+          source $OITG_SCRATCH_DIR/nix-oitg-venvs/artiq-master-dev/bin/activate || exit 1
         '';
       };
     in {
