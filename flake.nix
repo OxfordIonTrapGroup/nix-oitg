@@ -123,7 +123,7 @@
         ];
         shellHook = ''
           if [ -z "$OITG_SCRATCH_DIR" ]; then
-            echo "OITG_SCRATCH_DIR environment variable not set, defaulting to ~/scratch."
+            echo "$(tput setaf 7)OITG_SCRATCH_DIR environment variable not set, defaulting to ~/scratch.$(tput sgr0)"
             export OITG_SCRATCH_DIR=$HOME/scratch
           fi
           ${
