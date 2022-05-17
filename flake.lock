@@ -14,11 +14,11 @@
         "src-pythonparser": "src-pythonparser"
       },
       "locked": {
-        "lastModified": 1652660931,
-        "narHash": "sha256-EzOtUBLkYqeeom8dRkGrNgmVVH0jwPmXUSrKz7C/AZo=",
+        "lastModified": 1652454834,
+        "narHash": "sha256-/NwixbUZNCOotWOe4TPhvFawzwj4HhXDXZLiUEMifJ0=",
         "ref": "master",
-        "rev": "31e57747ceddaa4731ebb7a6c7ec8ef39ea6b391",
-        "revCount": 9237,
+        "rev": "6953bf08fbd1ead621e4aa60d40540db3c6c8b8a",
+        "revCount": 9235,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
       },
@@ -70,23 +70,39 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1652572281,
-        "narHash": "sha256-UEsrB5XBOj0blVe2ldc0lHvlhLYZJDHroELMHlg7XxA=",
+        "lastModified": 1651514317,
+        "narHash": "sha256-1dVfhWpFPpBcaDKVoEvsiqBeozjGZLNfNY/u4jipbS4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "43ff6cb1c027d13dc938b88eb099462210fea52f",
+        "rev": "9e49886b3d83d18ca59f66ec7b388315fa3d2e60",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "ref": "nixos-21.11",
         "repo": "nixpkgs",
         "type": "github"
+      }
+    },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1646939531,
+        "narHash": "sha256-bxOjVqcsccCNm+jSmEh/bm0tqfE3SdjwS+p+FZja3ho=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "fcd48a5a0693f016a5c370460d0c2a8243b882dc",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-unstable",
+        "type": "indirect"
       }
     },
     "root": {
       "inputs": {
         "artiq": "artiq",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "sipyco": "sipyco",
         "src-andorEmccd": "src-andorEmccd",
         "src-llama": "src-llama",

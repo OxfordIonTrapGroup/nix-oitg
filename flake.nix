@@ -4,6 +4,10 @@
   inputs = {
     artiq.url = "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git";
 
+    # Julia 1.7 is not available from nixpkgs 21.11; this second copy can be removed
+    # once it is.
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+
     # Oxford-flavoured ARTIQ packages. We pull them in as flake inputs so we can
     # conveniently update them using `nix lock`, etc., rather than manually having to
     # track hashes.
@@ -35,7 +39,7 @@
       flake = false;
     };
   };
-  outputs = { self, artiq, sipyco, src-andorEmccd, src-llama
+  outputs = { self, artiq, sipyco, nixpkgs-unstable, src-andorEmccd, src-llama
     , src-ndscan, src-oitg, src-oxart, src-oxart-devices }:
     let
       nixpkgs = artiq.nixpkgs;
@@ -114,7 +118,7 @@
         buildInputs = [
           python-env
           artiq.packages.x86_64-linux.openocd-bscanspi
-          nixpkgs.julia_17-bin
+          nixpkgs-unstable.legacyPackages.x86_64-linux.julia_17-bin
         ];
         shellHook = ''
           if [ -z "$OITG_SCRATCH_DIR" ]; then
