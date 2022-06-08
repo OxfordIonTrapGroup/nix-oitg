@@ -14,11 +14,11 @@
         "src-pythonparser": "src-pythonparser"
       },
       "locked": {
-        "lastModified": 1654685978,
-        "narHash": "sha256-mq4w2A9FW61amwGYlXDr1ZeBOsXPXmLyU7zny7pbF3Q=",
+        "lastModified": 1652660931,
+        "narHash": "sha256-EzOtUBLkYqeeom8dRkGrNgmVVH0jwPmXUSrKz7C/AZo=",
         "ref": "master",
-        "rev": "7a1b57dd7b518b3f0eb46fb9875b0904bbe8713f",
-        "revCount": 9238,
+        "rev": "31e57747ceddaa4731ebb7a6c7ec8ef39ea6b391",
+        "revCount": 9237,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
       },
@@ -39,11 +39,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1654007592,
-        "narHash": "sha256-vaDFhE1ItjqtIcinC/6RAJGbj44pxxMUEeQUa3FtgEE=",
+        "lastModified": 1649124276,
+        "narHash": "sha256-l1+vk7cvj4cjl83wRx/y1Jwdds4e8xAzpxHrXusEZ5A=",
         "owner": "m-labs",
         "repo": "artiq-comtools",
-        "rev": "cb73281154656ee8f74db1866859e31bf42755cd",
+        "rev": "e2d85f2e51ecdac463da752ef754e59572f9e119",
         "type": "github"
       },
       "original": {
@@ -70,11 +70,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1654593855,
-        "narHash": "sha256-c+SyXvj7THre87OyIdZfRVR+HhI/g1ZDrQ3VUtTuHkU=",
+        "lastModified": 1653581809,
+        "narHash": "sha256-Uvka0V5MTGbeOfWte25+tfRL3moECDh1VwokWSZUdoY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "033bd4fa9a8fbe0c68a88e925d9a884161044b25",
+        "rev": "83658b28fe638a170a19b8933aa008b30640fbd1",
         "type": "github"
       },
       "original": {
@@ -86,11 +86,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1654593855,
-        "narHash": "sha256-c+SyXvj7THre87OyIdZfRVR+HhI/g1ZDrQ3VUtTuHkU=",
+        "lastModified": 1653581809,
+        "narHash": "sha256-Uvka0V5MTGbeOfWte25+tfRL3moECDh1VwokWSZUdoY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "033bd4fa9a8fbe0c68a88e925d9a884161044b25",
+        "rev": "83658b28fe638a170a19b8933aa008b30640fbd1",
         "type": "github"
       },
       "original": {
