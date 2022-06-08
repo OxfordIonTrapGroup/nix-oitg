@@ -99,7 +99,7 @@
         doCheck = false;
       };
       python-env = (nixpkgs.python3.withPackages (ps:
-        (with ps; [ aiohttp influxdb llvmlite numba pyzmq ]) ++ [
+        (with ps; [ aiohttp h5py influxdb llvmlite numba pyzmq ]) ++ [
           # ARTIQ will pull in a large number of transitive dependencies, most of which
           # we also rely on. Currently, it is a bit overly generous, though, in that it
           # pulls in all the requirements for a full GUI and firmware development
