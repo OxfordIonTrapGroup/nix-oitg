@@ -11,9 +11,6 @@
     # Oxford-flavoured ARTIQ packages. We pull them in as flake inputs so we can
     # conveniently update them using `nix lock`, etc., rather than manually having to
     # track hashes.
-    sipyco.url = "github:OxfordIonTrapGroup/sipyco";
-    sipyco.inputs.nixpkgs.follows = "artiq/nixpkgs";
-    artiq.inputs.sipyco.follows = "sipyco";
     src-andorEmccd = {
       url = "github:dnadlinger/andorEmccd";
       flake = false;
@@ -39,10 +36,11 @@
       flake = false;
     };
   };
-  outputs = { self, artiq, sipyco, nixpkgs-unstable, src-andorEmccd, src-llama
+  outputs = { self, artiq, nixpkgs-unstable, src-andorEmccd, src-llama
     , src-ndscan, src-oitg, src-oxart, src-oxart-devices }:
     let
       nixpkgs = artiq.nixpkgs;
+      sipyco = artiq.inputs.sipyco;
       andorEmccd = nixpkgs.python3Packages.buildPythonPackage {
         name = "andorEmccd";
         src = src-andorEmccd;
