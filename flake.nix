@@ -143,7 +143,7 @@
 
   nixConfig = {
     extra-trusted-public-keys =
-      "buildsvr-1:3EJ00F+rbqkxwDTforU07Jj1Rzq3B+uVWc70+8fXv/s=";
-    extra-substituters = "ssh://nix-ssh@10.255.6.197";
+      "buildsvr-1:3EJ00F+rbqkxwDTforU07Jj1Rzq3B+uVWc70+8fXv/s= nixbld.m-labs.hk-1:5aSRVA5b320xbNvu30tqxVPXpld73bhtOeH6uAjRyHc=";
+    extra-substituters = "ssh://nix-ssh@10.255.6.197 https://nixbld.m-labs.hk";
   };
 }
