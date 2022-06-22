@@ -104,6 +104,7 @@
           # install (Qt, Rust, etc.). Could slim down if disk usage ever becomes an
           # issue.
           artiq.packages.x86_64-linux.artiq
+          artiq.packages.x86_64-linux.entangler
           andorEmccd
           llama
           ndscan
@@ -117,6 +118,8 @@
           python-env
           artiq.packages.x86_64-linux.openocd-bscanspi
           nixpkgs-unstable.legacyPackages.x86_64-linux.julia_17-bin
+          nixpkgs.lld_11
+          nixpkgs.llvm_11
         ];
         shellHook = ''
           if [ -z "$OITG_SCRATCH_DIR" ]; then
