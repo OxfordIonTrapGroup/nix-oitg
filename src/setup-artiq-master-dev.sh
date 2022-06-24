@@ -32,6 +32,15 @@ venv_name="artiq-master-dev"
 venv_path="${venv_root}/${venv_name}"
 if [[ -d "${venv_path}" ]]; then
     diag "Using existing Python venv: ${venv_path}."
+
+    # Make sure the venv is using the correct Python interpreter. Broken symlinks (such
+    # as ones referring to a since-GC'd /nix/store path) trip up the venv code, so
+    # remove them first.
+    if [[ ! -z $(find "${venv_path}/bin" -type l -xtype l) ]]; then
+        diag "Regenerating broken Python executable symlinks."
+        find "${venv_path}/bin" -type l -xtype l -delete
+    fi
+    python -m venv --upgrade "${venv_path}"
 else
     echo "Creating new Python venv: ${venv_path}."
     read -n 1 -p "Continue? [Y/n] " reply
