@@ -4,7 +4,7 @@ Nix flakes for the Oxford Ion Trap Quantum Computing group
 This repository contains derivations for deploying ARTIQ via the
 Nix package manager.
 
-To use, first set up Nix as described on its [website](nix). Make
+To use, first set up Nix as described on its [website][nix]. Make
 sure you have version 2.4 or higher (tested: 2.6). Both single-user
 and multi-user installs work fine for our purposes. If you choose
 the latter, you will probably want to add your user to the trusted
