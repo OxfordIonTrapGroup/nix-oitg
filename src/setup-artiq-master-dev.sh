@@ -2,10 +2,10 @@
 set -euo pipefail
 
 # Coloured console output.
-warning=$(tput setaf 1)$(tput bold)
-grey=$(tput setaf 7)
-blue=$(tput setaf 4)
-reset=$(tput sgr0)
+warning="\033[31m\033[1m"
+grey="\033[37m"
+blue="\033[34m"
+reset="\033[0;10m"
 
 function warn()
 {
