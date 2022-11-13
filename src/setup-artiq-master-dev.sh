@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Coloured console output (when not running with $TERM not set, as is the case
 # e.g. from systemd units).
-if [[ -z $TERM ]]; then
+if [[ -z "$TERM" ]]; then
     warning=""
     grey=""
     blue=""
