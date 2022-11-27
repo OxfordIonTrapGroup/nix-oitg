@@ -12,11 +12,11 @@
         "src-pythonparser": "src-pythonparser"
       },
       "locked": {
-        "lastModified": 1668376837,
-        "narHash": "sha256-clHzbM50yNDeg/D/67d5Sd+vOOaXZ97eQ0rccIryhdg=",
+        "lastModified": 1669516338,
+        "narHash": "sha256-l8mQ0zjbBvDIvLx7GQQjLXUyNcOMkNedCv9Iw8zS5oE=",
         "ref": "refs/heads/master",
-        "rev": "fd18fdf4f849e57f5efaa6719f65d98571f2044c",
-        "revCount": 9436,
+        "rev": "8e463d43c5af31431c276e2d6b5cf680b02a786a",
+        "revCount": 9459,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
       },
@@ -247,11 +247,11 @@
     "src-oxart": {
       "flake": false,
       "locked": {
-        "lastModified": 1666719751,
-        "narHash": "sha256-3grEmtHrj4/m2r+LKAw2+tJlIUlT+XVoPCn2QwDWvhA=",
+        "lastModified": 1669478533,
+        "narHash": "sha256-Ph9lB3fNOg7XK8S+i82NYk9w0DXt5TuEgl2OMe0zjrM=",
         "ref": "refs/heads/master",
-        "rev": "07e02d793974dc1c198309e313b803308de2a1b8",
-        "revCount": 663,
+        "rev": "46f86488cb6050abb95712d99cc8296bf88f4bfa",
+        "revCount": 664,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/oxart.git"
       },
