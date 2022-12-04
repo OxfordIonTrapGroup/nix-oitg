@@ -113,7 +113,7 @@
         buildInputs = [
           python-env
           artiq.packages.x86_64-linux.openocd-bscanspi
-          nixpkgs.julia_17-bin
+          nixpkgs.julia_18-bin
           nixpkgs.lld_11
           nixpkgs.llvm_11
         ];
