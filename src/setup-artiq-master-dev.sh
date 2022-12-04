@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Coloured console output (when not running with $TERM empty or set to a "dumb"
 # terminal, as is the case e.g. from systemd units or BuildBot).
-if ! tput bold 2>/dev/null; then
+if ! tput bold >/dev/null 2>/dev/null; then
     warning=""
     grey=""
     blue=""
