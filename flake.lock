@@ -12,11 +12,11 @@
         "src-pythonparser": "src-pythonparser"
       },
       "locked": {
-        "lastModified": 1669516338,
-        "narHash": "sha256-l8mQ0zjbBvDIvLx7GQQjLXUyNcOMkNedCv9Iw8zS5oE=",
-        "ref": "refs/heads/master",
-        "rev": "8e463d43c5af31431c276e2d6b5cf680b02a786a",
-        "revCount": 9459,
+        "lastModified": 1670123744,
+        "narHash": "sha256-ZtladkXOzE/+MgjLGsCq1e/eg+fkpKy+8H8epbMEgEI=",
+        "ref": "master",
+        "rev": "680eb6c5d7ff0046553db7768a5691d76934470b",
+        "revCount": 9481,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
       },
@@ -84,16 +84,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1668281765,
-        "narHash": "sha256-6Tuj9CZ9HacMk7FJ8sF9XSVTBnUhVzlSY40Jo1krIaQ=",
+        "lastModified": 1670009809,
+        "narHash": "sha256-yt/dQ32Vz4WenDLu4XeHbnXFxiHbTcnU0WwiLW5Ce6c=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c5091eec689acc45d4d818109236da31d3685ca2",
+        "rev": "660e7737851506374da39c0fa550c202c824a17c",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-22.05",
+        "ref": "nixos-22.11",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -117,11 +117,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1664319253,
-        "narHash": "sha256-hycJAgy+NFF9f5I6++7yo8KdhMSyKCPKJazRPxeedI4=",
+        "lastModified": 1669369686,
+        "narHash": "sha256-YHez+S3PTUgtuliUNB5WM+RXcj8RKLbHVRvOgELSkwU=",
         "owner": "m-labs",
         "repo": "sipyco",
-        "rev": "d58ded7280e0f020be2446d4fee70f4393e6045f",
+        "rev": "98db6eacb084c2c5280fb653bee3d313e3ca6df8",
         "type": "github"
       },
       "original": {
@@ -149,11 +149,11 @@
     "src-entangler": {
       "flake": false,
       "locked": {
-        "lastModified": 1666719664,
-        "narHash": "sha256-1q8g6dJ9loxUKiCWOFvUs1eFJ6yEAT47mRfBuSRgM4Y=",
-        "ref": "refs/heads/master",
-        "rev": "d37caa5a9f5b6e03e6ce4fa5ae561289fa959492",
-        "revCount": 142,
+        "lastModified": 1669983901,
+        "narHash": "sha256-GPAi2Rf7Z+Y3oTlSpqOvPyvEzYcZs7pj+0+lOP0O+oM=",
+        "ref": "master",
+        "rev": "eaf92b9eb9e1c95eb2b048b6a5312d55c7a74e5f",
+        "revCount": 148,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/hardware/entangler-core.git"
       },
@@ -167,7 +167,7 @@
       "locked": {
         "lastModified": 1580958988,
         "narHash": "sha256-kKJgQBHBlocwRiBbBYhggFC5XHFzxtzdFhZeCVUooG0=",
-        "ref": "refs/heads/master",
+        "ref": "master",
         "rev": "c652a916288c151baee236329a9d00d0d1516550",
         "revCount": 18,
         "type": "git",
@@ -197,11 +197,11 @@
     "src-misoc": {
       "flake": false,
       "locked": {
-        "lastModified": 1665395741,
-        "narHash": "sha256-7ULMGBPPn5NxZX6rdxU5GheoSNBiJklHQEVf04jU9tI=",
-        "ref": "refs/heads/master",
-        "rev": "4fb0730db4c5de7e86f82fa3bd204e6c4608af85",
-        "revCount": 2427,
+        "lastModified": 1669779825,
+        "narHash": "sha256-l3lyy6dmbivo9Tppb08KHSyU89ZZG1CCcSjPlNRD210=",
+        "ref": "master",
+        "rev": "2c255775f732a41ba1a512ab3d2547af4e25f674",
+        "revCount": 2435,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/m-labs/misoc.git"
@@ -247,11 +247,11 @@
     "src-oxart": {
       "flake": false,
       "locked": {
-        "lastModified": 1669478533,
-        "narHash": "sha256-Ph9lB3fNOg7XK8S+i82NYk9w0DXt5TuEgl2OMe0zjrM=",
-        "ref": "refs/heads/master",
-        "rev": "46f86488cb6050abb95712d99cc8296bf88f4bfa",
-        "revCount": 664,
+        "lastModified": 1669910034,
+        "narHash": "sha256-ndw9srHp3c8BCSJ5pjnE9PycoIX5QKL/IY1idvprDsk=",
+        "ref": "master",
+        "rev": "5c01ce0a96974a5532292186babdcffd332a7269",
+        "revCount": 667,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/oxart.git"
       },
