@@ -121,6 +121,8 @@
           if [ -z "$OITG_SCRATCH_DIR" ]; then
             echo "OITG_SCRATCH_DIR environment variable not set, defaulting to ~/scratch."
             export OITG_SCRATCH_DIR=$HOME/scratch
+            export QT_PLUGIN_PATH=${nixpkgs.qt5.qtbase}/${nixpkgs.qt5.qtbase.dev.qtPluginPrefix}
+            export QML2_IMPORT_PATH=${nixpkgs.qt5.qtbase}/${nixpkgs.qt5.qtbase.dev.qtQmlPrefix}
           fi
           ${
             ./src/setup-artiq-master-dev.sh
