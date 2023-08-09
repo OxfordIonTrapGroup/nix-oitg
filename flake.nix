@@ -116,6 +116,7 @@
           nixpkgs.julia_18-bin
           nixpkgs.lld_11
           nixpkgs.llvm_11
+          nixpkgs.libusb-compat-0_1
         ];
         shellHook = ''
           if [ -z "$OITG_SCRATCH_DIR" ]; then
