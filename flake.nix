@@ -66,6 +66,15 @@
         name = "ndscan";
         src = src-ndscan;
         propagatedBuildInputs = [ artiq.packages.x86_64-linux.artiq oitg ];
+        # ndscan depends on pyqtgraph>=0.12.4 to display 2d plot colorbars, but this
+        # is not yet in nixpkgs 23.05. Since this flake will mostly be used for
+        # server-(master-)side installations, just patch it out for now. In theory,
+        # pythonRelaxDepsHook should do this more elegantly, but it does not seem to
+        # be run before pipInstallPhase.
+        postPatch = ''
+          substituteInPlace setup.py --replace "pyqtgraph>=0.12.4" pyqtgraph
+        '';
+        dontWrapQtApps = true; # Pulled in via the artiq package; we don't care.
       };
       oxart = nixpkgs.python3Packages.buildPythonPackage {
         name = "oxart";
@@ -74,6 +83,7 @@
         installCheckPhase = ''
           ${nixpkgs.python3.interpreter} -m unittest discover test
         '';
+        dontWrapQtApps = true; # Pulled in via the artiq package; we don't care.
       };
       oxart-devices = nixpkgs.python3Packages.buildPythonPackage {
         name = "oxart-devices";
