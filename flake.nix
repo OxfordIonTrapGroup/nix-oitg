@@ -65,6 +65,7 @@
       ndscan = nixpkgs.python3Packages.buildPythonPackage {
         name = "ndscan";
         src = src-ndscan;
+        format = "pyproject";
         propagatedBuildInputs = [ artiq.packages.x86_64-linux.artiq oitg ];
         # ndscan depends on pyqtgraph>=0.12.4 to display 2d plot colorbars, but this
         # is not yet in nixpkgs 23.05. Since this flake will mostly be used for
