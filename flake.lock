@@ -218,11 +218,11 @@
     "src-ndscan": {
       "flake": false,
       "locked": {
-        "lastModified": 1690984699,
-        "narHash": "sha256-sTiblNWNsSQMm+Qksez+rqP74OsuLFN5Pt2S/a804pc=",
+        "lastModified": 1694997389,
+        "narHash": "sha256-kfuwr7pCBrYJCd+S8nhFA9G4jC7UG+0SZJ/URW9A+50=",
         "owner": "OxfordIonTrapGroup",
         "repo": "ndscan",
-        "rev": "ddf81517c0751f66fd00515a80ffbbccee7c46bb",
+        "rev": "37251f796b0f4d341bfaffebbd0a83e815f05515",
         "type": "github"
       },
       "original": {
@@ -250,11 +250,11 @@
     "src-oxart": {
       "flake": false,
       "locked": {
-        "lastModified": 1693598108,
-        "narHash": "sha256-tgHN9glAzgajdBPkYnd+WYfmszg/KkB8+MkwcgY4kvM=",
+        "lastModified": 1694916070,
+        "narHash": "sha256-5dt/kQEWq0VXo0KhjwT3uTVaCsD+QyLyP2sbdX5/PpU=",
         "ref": "master",
-        "rev": "7ba37dcdc8147c918eaf05b2df41e69cb1a2a86c",
-        "revCount": 683,
+        "rev": "3be8399740e8863f4dcae203f30c28a8f0978b99",
+        "revCount": 685,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/oxart.git"
       },
