@@ -218,11 +218,11 @@
     "src-ndscan": {
       "flake": false,
       "locked": {
-        "lastModified": 1694997389,
-        "narHash": "sha256-kfuwr7pCBrYJCd+S8nhFA9G4jC7UG+0SZJ/URW9A+50=",
+        "lastModified": 1695036459,
+        "narHash": "sha256-Ifp/T2pG/fHMbP0ffE66ar+xgmwiyMeixL9Hm/ZxEic=",
         "owner": "OxfordIonTrapGroup",
         "repo": "ndscan",
-        "rev": "37251f796b0f4d341bfaffebbd0a83e815f05515",
+        "rev": "cd6d56a094a7c811f90bb40550f5fb76a683e3f1",
         "type": "github"
       },
       "original": {

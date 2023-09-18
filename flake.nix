@@ -66,14 +66,25 @@
         name = "ndscan";
         src = src-ndscan;
         format = "pyproject";
-        propagatedBuildInputs = [ artiq.packages.x86_64-linux.artiq oitg ];
+        propagatedBuildInputs = [
+          artiq.packages.x86_64-linux.artiq
+          oitg
+          nixpkgs.python3Packages.poetry-core
+          nixpkgs.python3Packages.pyqt6
+        ];
         # ndscan depends on pyqtgraph>=0.12.4 to display 2d plot colorbars, but this
         # is not yet in nixpkgs 23.05. Since this flake will mostly be used for
         # server-(master-)side installations, just patch it out for now. In theory,
         # pythonRelaxDepsHook should do this more elegantly, but it does not seem to
         # be run before pipInstallPhase.
+        # FIXME: artiq/sipyco/oitg dependencies which explicitly specify a Git source
+        # repo do not seem to be matched by the packages pulled in via Nix; what is the
+        # correct approach here?
         postPatch = ''
-          substituteInPlace setup.py --replace "pyqtgraph>=0.12.4" pyqtgraph
+          sed -i -e "s/^pyqtgraph = .*//" pyproject.toml
+          sed -i -e "s/^artiq = .*//" pyproject.toml
+          sed -i -e "s/^sipyco = .*//" pyproject.toml
+          sed -i -e "s/^oitg = .*//" pyproject.toml
         '';
         dontWrapQtApps = true; # Pulled in via the artiq package; we don't care.
       };
