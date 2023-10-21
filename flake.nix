@@ -77,12 +77,12 @@
         # server-(master-)side installations, just patch it out for now. In theory,
         # pythonRelaxDepsHook should do this more elegantly, but it does not seem to
         # be run before pipInstallPhase.
-        # FIXME: artiq/sipyco/oitg dependencies which explicitly specify a Git source
+        # FIXME: qasync/sipyco/oitg dependencies which explicitly specify a Git source
         # repo do not seem to be matched by the packages pulled in via Nix; what is the
         # correct approach here?
         postPatch = ''
           sed -i -e "s/^pyqtgraph = .*//" pyproject.toml
-          sed -i -e "s/^artiq = .*//" pyproject.toml
+          sed -i -e "s/^qasync = .*//" pyproject.toml
           sed -i -e "s/^sipyco = .*//" pyproject.toml
           sed -i -e "s/^oitg = .*//" pyproject.toml
         '';
