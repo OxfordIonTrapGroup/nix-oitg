@@ -53,9 +53,13 @@
       oitg = nixpkgs.python3Packages.buildPythonPackage {
         name = "oitg";
         src = src-oitg;
+        format = "pyproject";
         propagatedBuildInputs = with nixpkgs.python3Packages; [
+          h5py
           scipy
           statsmodels
+          nixpkgs.python3Packages.poetry-core
+          nixpkgs.python3Packages.poetry-dynamic-versioning
         ];
         # Whatever magic `setup.py test` does by default fails for oitg.
         installCheckPhase = ''
@@ -100,6 +104,7 @@
       oxart-devices = nixpkgs.python3Packages.buildPythonPackage {
         name = "oxart-devices";
         src = src-oxart-devices;
+        format = "pyproject";
         propagatedBuildInputs = [
           nixpkgs.python3Packages.appdirs
           oitg

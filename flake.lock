@@ -12,11 +12,11 @@
         "src-pythonparser": "src-pythonparser"
       },
       "locked": {
-        "lastModified": 1712869491,
-        "narHash": "sha256-D5e1L4T+tzTkGB+yNZZmv4vsO+yOQEhxfF9ze2pbjYM=",
+        "lastModified": 1712948853,
+        "narHash": "sha256-rbCx93NxpJZDdfvFTCEn8AyD7ZFciCdp6pHx8R9z39U=",
         "ref": "refs/heads/master",
-        "rev": "39eee3e21a5962b5e415ab3cedc66715f8ddca4a",
-        "revCount": 10117,
+        "rev": "856881ce7669d35077570572ea4577452cec8d2a",
+        "revCount": 10120,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
       },
@@ -218,11 +218,11 @@
     "src-ndscan": {
       "flake": false,
       "locked": {
-        "lastModified": 1712427705,
-        "narHash": "sha256-FCq57BcHoi6BZqmByqzXYEAiT0WAPETlSyGQO4j5kc8=",
+        "lastModified": 1712892179,
+        "narHash": "sha256-BMuT0DGDPtJ7PRTmMZ3dMJy32RRgXlnwBlYo67zeObo=",
         "owner": "OxfordIonTrapGroup",
         "repo": "ndscan",
-        "rev": "0fbb69f893197e5809fac47bbe105a7a465bb5f3",
+        "rev": "97d0ab4bc07ec3455f76a54119805759d1f7ba39",
         "type": "github"
       },
       "original": {
@@ -234,11 +234,11 @@
     "src-oitg": {
       "flake": false,
       "locked": {
-        "lastModified": 1706911902,
-        "narHash": "sha256-rhIZD06+0RRthLsR7TBagjPRaYuMHufRTOqey0NIVpU=",
+        "lastModified": 1712874276,
+        "narHash": "sha256-5AEvGWNxV6+p20f1ivH9jLqVLVhdaPOJuOTIrVYvR9c=",
         "owner": "OxfordIonTrapGroup",
         "repo": "oitg",
-        "rev": "fe4f187ed91ac74a3f8dd28d526badd300ed6f7d",
+        "rev": "c172e73a2600feed4052b1b7edefaada7ee4e533",
         "type": "github"
       },
       "original": {
