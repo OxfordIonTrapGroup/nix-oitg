@@ -100,7 +100,7 @@ as usual.
 This can be particularly useful to install packages in development mode while
 actively working on code (e.g. in oxart). For instance, after cloning the
 oxart repository to ~/scratch/oxart, installing it in development mode using
-    ${blue}pip install pip install --config-settings editable_mode=compat -e ~/scratch/oxart${reset}
+    ${blue}pip install --config-settings editable_mode=compat -e ~/scratch/oxart${reset}
 will take precedence over the Nix-provided version inside this environment,
 such that changes to the code in ~/scratch/oxart immediately take effect.
 (The ${grey}--config-settings editable_mode=compat${reset} argument is necessary
