@@ -48,7 +48,43 @@ if [[ -d "${venv_path}" ]]; then
         diag "Regenerating broken Python executable symlinks."
         find "${venv_path}/bin" -type l -xtype l -delete
     fi
-    python -m venv --upgrade "${venv_path}"
+
+    # Attempt to upgrade the Python interpreter if there is a version mismatch. This
+    # does not seem to work well (anymore?), and --upgrade is (now?) indeed documented
+    # to only apply to in-place upgrades.
+    #
+    # Only run venv --upgrade when there is a mismatch as it causes noticeable latency.
+    nix_python_base=$(python -c "import sys; print(sys.base_prefix)")
+    venv_python_base=$(${venv_path}/bin/python -c "import sys; print(sys.base_prefix)")
+    if [[ ! $nix_python_base == $venv_python_base ]]; then
+        diag "Attempting to upgrade Python version in venv."
+        python -m venv --upgrade "${venv_path}"
+    fi
+
+    # If Python versions inside the venv and in the bare Nix environment still do not
+    # match, leave it to the user to recreate the venv. We could attempt an in-place
+    # upgrade in the future, though this requires care to make sure all the executable
+    # wrappers also get updated.
+    #
+    # We use sys.base_prefix for the check to get something representative of the
+    # underlying Python interpreter, stripping away both the venv and the Nix python-env
+    # layers.
+    nix_python_base=$(python -c "import sys; print(sys.base_prefix)")
+    venv_python_base=$(${venv_path}/bin/python -c "import sys; print(sys.base_prefix)")
+    if [[ ! $nix_python_base == $venv_python_base ]]; then
+        echo ""
+        warn "Error: Python version in ${venv_name} venv is out of sync with Nix flake."
+        echo ""
+        diag " Out-of-date venv Python base prefix: ${venv_python_base}"
+        diag "      Current Nix Python base prefix: ${nix_python_base}"
+        printf """
+Please remove the venv (e.g. by renaming the ${blue}${venv_name}${reset} directory in
+${blue}${venv_root}${reset} to keep a backup) and enter ${blue}nix develop${reset}
+again. You might need to manually install any additional packages, etc. if you
+had previously customised your venv.
+"""
+        exit 2
+    fi
 else
     echo "Creating new Python venv: ${venv_path}."
     read -n 1 -p "Continue? [Y/n] " reply
