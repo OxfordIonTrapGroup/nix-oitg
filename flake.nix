@@ -107,6 +107,9 @@
         format = "pyproject";
         propagatedBuildInputs = [
           nixpkgs.python3Packages.appdirs
+          nixpkgs.python3Packages.influxdb
+          nixpkgs.python3Packages.pyserial
+          nixpkgs.python3Packages.pyzmq
           oitg
           sipyco.packages.x86_64-linux.sipyco
         ];
