@@ -5,7 +5,7 @@ This repository contains derivations for deploying ARTIQ via the
 Nix package manager.
 
 To use, first set up Nix as described on its [website][nix]. Make
-sure you have version 2.4 or higher (tested: 2.6). Both single-user
+sure you have version 2.4 or higher (tested: 2.6–2.24). Both single-user
 and multi-user installs work fine for our purposes. If you choose
 the latter, you will probably want to add your user to the trusted
 users to be able to mark the binary caches as trusted (see below).
