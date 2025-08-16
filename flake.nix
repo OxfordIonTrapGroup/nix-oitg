@@ -73,7 +73,7 @@
         propagatedBuildInputs = [
           artiq.packages.x86_64-linux.artiq
           oitg
-          nixpkgs.python3Packages.poetry-core
+          nixpkgs.python3Packages.hatchling
           nixpkgs.python3Packages.pyqt6
         ];
         # ndscan depends on pyqtgraph>=0.12.4 to display 2d plot colorbars, but this

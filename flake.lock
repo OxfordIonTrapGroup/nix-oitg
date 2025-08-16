@@ -3,6 +3,7 @@
     "artiq": {
       "inputs": {
         "artiq-comtools": "artiq-comtools",
+        "naersk": "naersk",
         "nixpkgs": "nixpkgs",
         "rust-overlay": "rust-overlay",
         "sipyco": "sipyco",
@@ -12,11 +13,11 @@
         "src-pythonparser": "src-pythonparser"
       },
       "locked": {
-        "lastModified": 1724177104,
-        "narHash": "sha256-ZGB5aB1L8Zq3KnVQx4Ptl3W6VIhktKn+/+qFFNhZQ04=",
+        "lastModified": 1755175539,
+        "narHash": "sha256-dp/UYsuq40FWaQGMrTGdT2OoCII2UGO7PxvbBD7JDUM=",
         "ref": "refs/heads/master",
-        "rev": "5472ed3e1c6012825d927c36209d84dacf2fb0f9",
-        "revCount": 10356,
+        "rev": "84b7b56e393cbf5e4959e95075e447e539ac7f2f",
+        "revCount": 10695,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
       },
@@ -38,11 +39,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1720768567,
-        "narHash": "sha256-3VoK7o5MtHtbHLrc6Pv+eQWFtaz5Gd/YWyV5TD3c5Ss=",
+        "lastModified": 1734270714,
+        "narHash": "sha256-7bzGn/hXLIsLQHGQsvo+uoIFUrw9DjXSlMC449BY4ME=",
         "owner": "m-labs",
         "repo": "artiq-comtools",
-        "rev": "f93570d8f2ed5a3cfb3e1c16ab00f2540551e994",
+        "rev": "7e3152314af8f5987370e33b347b2ec2697567ed",
         "type": "github"
       },
       "original": {
@@ -69,13 +70,34 @@
         "type": "github"
       }
     },
+    "naersk": {
+      "inputs": {
+        "nixpkgs": [
+          "artiq",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1745925850,
+        "narHash": "sha256-cyAAMal0aPrlb1NgzMxZqeN1mAJ2pJseDhm2m6Um8T0=",
+        "owner": "nix-community",
+        "repo": "naersk",
+        "rev": "38bc60bbc157ae266d4a0c96671c6c742ee17a5f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "naersk",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1723362943,
-        "narHash": "sha256-dFZRVSgmJkyM0bkPpaYRtG/kRMRTorUIDj8BxoOt1T4=",
+        "lastModified": 1746904237,
+        "narHash": "sha256-3e+AVBczosP5dCLQmMoMEogM57gmZ2qrVSrmq9aResQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a58bc8ad779655e790115244571758e8de055e3d",
+        "rev": "d89fc19e405cb2d55ce7cc114356846a0ee5e956",
         "type": "github"
       },
       "original": {
@@ -126,11 +148,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1717637367,
-        "narHash": "sha256-4mSm9wl5EMgzzrW6w86IDUevkEOT99FESHGcxcyQbD0=",
+        "lastModified": 1747129210,
+        "narHash": "sha256-gtNo8VqMBWJbJCCaNVI+8/IoP4Udrz3wrgmJ7uz4hhQ=",
         "owner": "m-labs",
         "repo": "sipyco",
-        "rev": "02b96ec2473a3c3d3c980899de2564ddce949dab",
+        "rev": "0ce7afdb3edc0abacc1623fa7c9c5f85a33e87e7",
         "type": "github"
       },
       "original": {
@@ -158,11 +180,11 @@
     "src-entangler": {
       "flake": false,
       "locked": {
-        "lastModified": 1700671220,
-        "narHash": "sha256-slztRBqCwRu8xvaSw6t9NcHWKFIKJFvNIof5t6Nfeew=",
-        "ref": "master",
-        "rev": "bed91fb2c4aba5236a32317fd0d9e1c571333cbe",
-        "revCount": 155,
+        "lastModified": 1706095408,
+        "narHash": "sha256-SXDUFsSPopcYk/R4v/kuehFw6RhuvZ4K/l6MXjFbw0M=",
+        "ref": "refs/heads/master",
+        "rev": "2f6717d0bbe409b993bb2c15f6aefaa966f66ca2",
+        "revCount": 171,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/hardware/entangler-core.git"
       },
@@ -174,11 +196,11 @@
     "src-llama": {
       "flake": false,
       "locked": {
-        "lastModified": 1580958988,
-        "narHash": "sha256-kKJgQBHBlocwRiBbBYhggFC5XHFzxtzdFhZeCVUooG0=",
+        "lastModified": 1719654396,
+        "narHash": "sha256-hN5nDQGPn1yZ1TmHvfPSZfX2Q9lWXar7z82KS2E4qqE=",
         "ref": "refs/heads/master",
-        "rev": "c652a916288c151baee236329a9d00d0d1516550",
-        "revCount": 18,
+        "rev": "82c1e2841ce46852375e2c9ba1f9bb153d2a7da1",
+        "revCount": 19,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/llama.git"
       },
@@ -190,11 +212,11 @@
     "src-migen": {
       "flake": false,
       "locked": {
-        "lastModified": 1721561053,
-        "narHash": "sha256-z3LRhNmKZrjr6rFD0yxtccSa/SWvFIYmb+G/D5d2Jd8=",
+        "lastModified": 1746709999,
+        "narHash": "sha256-JwvxF/xwtQpy/JnG7WXhx0y5k+dHDSwNUcMjgQaegbg=",
         "owner": "m-labs",
         "repo": "migen",
-        "rev": "9279e8623f8433bc4f23ac51e5e2331bfe544417",
+        "rev": "b92717a918c4d274d37f6eaff0c57ad689468173",
         "type": "github"
       },
       "original": {
@@ -206,11 +228,11 @@
     "src-misoc": {
       "flake": false,
       "locked": {
-        "lastModified": 1715647536,
-        "narHash": "sha256-q+USDcaKHABwW56Jzq8u94iGPWlyLXMyVt0j/Gyg+IE=",
+        "lastModified": 1747128843,
+        "narHash": "sha256-TCFPoaQFaFCg3my3wyl3Gkz4ZnyzWa/ZXbcZG/OEsCU=",
         "ref": "refs/heads/master",
-        "rev": "fea9de558c730bc394a5936094ae95bb9d6fa726",
-        "revCount": 2455,
+        "rev": "9e07cf5f3b7d4949d3b775d4d946ca22900ab528",
+        "revCount": 2498,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/m-labs/misoc.git"
@@ -224,11 +246,11 @@
     "src-ndscan": {
       "flake": false,
       "locked": {
-        "lastModified": 1724179292,
-        "narHash": "sha256-ObLhmFVKWfOAI/mVhNMp00OL7uo7Nl+O26f/bI+0Hl0=",
+        "lastModified": 1755307157,
+        "narHash": "sha256-+69vTLIpSLttFNTcL0W1qtsH3r1Ksu3Z8+ez8xzmuvM=",
         "owner": "OxfordIonTrapGroup",
         "repo": "ndscan",
-        "rev": "e7c0211019e3fc77ae0c032869e4833e407874f0",
+        "rev": "c64b063f6f435b4528dd958ae09390680045d6b8",
         "type": "github"
       },
       "original": {
@@ -240,11 +262,11 @@
     "src-oitg": {
       "flake": false,
       "locked": {
-        "lastModified": 1724177401,
-        "narHash": "sha256-Ecg6tbBzh+Amwwa7K5O8G+oYUycUGS3ctKgd9Zzu10w=",
+        "lastModified": 1755303327,
+        "narHash": "sha256-BMVTzqeJKYCqyw/K6RuqudHJdSj5Ja5eEZO4Gm40iSo=",
         "owner": "OxfordIonTrapGroup",
         "repo": "oitg",
-        "rev": "3ecba4b2ea1d407be02a87193e2fde4cd9c09af3",
+        "rev": "fb5547799818f1b2c9082c996f7b60192a67929d",
         "type": "github"
       },
       "original": {
@@ -256,11 +278,11 @@
     "src-oxart": {
       "flake": false,
       "locked": {
-        "lastModified": 1706899536,
-        "narHash": "sha256-kpUayMYT5OIwsmuSqOv7JMP4ECzyV6AbhOBVkcr/LQ0=",
+        "lastModified": 1747788637,
+        "narHash": "sha256-jdlW9vsFwjn3tvColsnSZ0hzTjrfs3e3cFMdfNrl6hc=",
         "ref": "refs/heads/master",
-        "rev": "92b076208202e20366b00a09a12f6f1b55934786",
-        "revCount": 728,
+        "rev": "5f214e9dbb7fdc25aa33053f1af45c0d842b39f1",
+        "revCount": 752,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/oxart.git"
       },
@@ -272,11 +294,11 @@
     "src-oxart-devices": {
       "flake": false,
       "locked": {
-        "lastModified": 1724177865,
-        "narHash": "sha256-FTp5Lmgfi1uQM9AEI4hFTQjie+wF1HkLXPsXn3NtdoI=",
+        "lastModified": 1755303668,
+        "narHash": "sha256-n23JqXJ3I3spXNlhCiuQdSlNkJu3nLb1Az+z5MYaM8s=",
         "owner": "OxfordIonTrapGroup",
         "repo": "oxart-devices",
-        "rev": "8074c330bc718bda2b0a91eb74b1988dcb5cbdb7",
+        "rev": "4d71a36ba1956cfa50d6d7367764649da0e933de",
         "type": "github"
       },
       "original": {
