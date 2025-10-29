@@ -100,12 +100,14 @@ as usual.
 This can be particularly useful to install packages in development mode while
 actively working on code (e.g. in oxart). For instance, after cloning the
 oxart repository to ~/scratch/oxart, installing it in development mode using
-    ${blue}pip install --config-settings editable_mode=compat -e ~/scratch/oxart${reset}
+    ${blue}pip install --config-settings editable_mode=compat --no-dependencies -e ~/scratch/oxart${reset}
 will take precedence over the Nix-provided version inside this environment,
 such that changes to the code in ~/scratch/oxart immediately take effect.
 (The ${grey}--config-settings editable_mode=compat${reset} argument is necessary
 for the installation to take precedence over the Nix-provided packages with
-recent versions of setuptools.)
+recent versions of setuptools. The ${grey}--no-dependencies${reset} argument ensures that
+packages do not pull in extra dependencies, which ought to be provided via Nix
+to avoid binary incompatibilities.)
 
 The venv should always be used in conjunction with the Nix development shell
 (${blue}nix develop${reset}), which in fact automatically activates the venv. Do not manually
