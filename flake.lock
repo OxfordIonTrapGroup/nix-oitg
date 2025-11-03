@@ -3,8 +3,9 @@
     "artiq": {
       "inputs": {
         "artiq-comtools": "artiq-comtools",
-        "mozilla-overlay": "mozilla-overlay",
+        "naersk": "naersk",
         "nixpkgs": "nixpkgs",
+        "rust-overlay": "rust-overlay",
         "sipyco": "sipyco",
         "src-entangler": "src-entangler",
         "src-migen": "src-migen",
@@ -12,15 +13,16 @@
         "src-pythonparser": "src-pythonparser"
       },
       "locked": {
-        "lastModified": 1713047389,
-        "narHash": "sha256-PMYGE8BjQGX6ySbqWUNolPCfL5ZVm7sF/rHTfzjfavY=",
+        "lastModified": 1755526794,
+        "narHash": "sha256-MPKGZJSpxAUt1yyHyPcOUqmFDLQBEHr/hVtwLlhmpBY=",
         "ref": "refs/heads/master",
-        "rev": "e3e1581ce529d03b0e7053e211ccbd78d47dac92",
-        "revCount": 10121,
+        "rev": "cd02c18ba7a8abf5dd000e9378c3613ad0e0d949",
+        "revCount": 10696,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
       },
       "original": {
+        "rev": "cd02c18ba7a8abf5dd000e9378c3613ad0e0d949",
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
       }
@@ -38,11 +40,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1707216368,
-        "narHash": "sha256-ZXoqzG2QsVsybALLYXs473avXcyKSZNh2kIgcPo60XQ=",
+        "lastModified": 1734270714,
+        "narHash": "sha256-7bzGn/hXLIsLQHGQsvo+uoIFUrw9DjXSlMC449BY4ME=",
         "owner": "m-labs",
         "repo": "artiq-comtools",
-        "rev": "e5d0204490bccc07ef9141b0d7c405ab01cb8273",
+        "rev": "7e3152314af8f5987370e33b347b2ec2697567ed",
         "type": "github"
       },
       "original": {
@@ -56,11 +58,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1694529238,
-        "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "ff7b65b44d01cf9ba6a71320833626af21126384",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
         "type": "github"
       },
       "original": {
@@ -69,34 +71,39 @@
         "type": "github"
       }
     },
-    "mozilla-overlay": {
-      "flake": false,
+    "naersk": {
+      "inputs": {
+        "nixpkgs": [
+          "artiq",
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1704373101,
-        "narHash": "sha256-+gi59LRWRQmwROrmE1E2b3mtocwueCQqZ60CwLG+gbg=",
-        "owner": "mozilla",
-        "repo": "nixpkgs-mozilla",
-        "rev": "9b11a87c0cc54e308fa83aac5b4ee1816d5418a2",
+        "lastModified": 1745925850,
+        "narHash": "sha256-cyAAMal0aPrlb1NgzMxZqeN1mAJ2pJseDhm2m6Um8T0=",
+        "owner": "nix-community",
+        "repo": "naersk",
+        "rev": "38bc60bbc157ae266d4a0c96671c6c742ee17a5f",
         "type": "github"
       },
       "original": {
-        "owner": "mozilla",
-        "repo": "nixpkgs-mozilla",
+        "owner": "nix-community",
+        "repo": "naersk",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1711668574,
-        "narHash": "sha256-u1dfs0ASQIEr1icTVrsKwg2xToIpn7ZXxW3RHfHxshg=",
+        "lastModified": 1746904237,
+        "narHash": "sha256-3e+AVBczosP5dCLQmMoMEogM57gmZ2qrVSrmq9aResQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "219951b495fc2eac67b1456824cc1ec1fd2ee659",
+        "rev": "d89fc19e405cb2d55ce7cc114356846a0ee5e956",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-23.11",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -109,7 +116,31 @@
         "src-ndscan": "src-ndscan",
         "src-oitg": "src-oitg",
         "src-oxart": "src-oxart",
-        "src-oxart-devices": "src-oxart-devices"
+        "src-oxart-devices": "src-oxart-devices",
+        "src-pico": "src-pico",
+        "src-wand": "src-wand"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "artiq",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1719454714,
+        "narHash": "sha256-MojqG0lyUINkEk0b3kM2drsU5vyaF8DFZe/FAlZVOGs=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "d1c527659cf076ecc4b96a91c702d080b213801e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "ref": "snapshot/2024-08-01",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "sipyco": {
@@ -120,11 +151,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1708937641,
-        "narHash": "sha256-Hkb9VYFzFgkYxfbh4kYcDSn7DbMUYehoQDeTALrxo2Q=",
+        "lastModified": 1747129210,
+        "narHash": "sha256-gtNo8VqMBWJbJCCaNVI+8/IoP4Udrz3wrgmJ7uz4hhQ=",
         "owner": "m-labs",
         "repo": "sipyco",
-        "rev": "4a28b311ce0069454b4e8fe1e6049db11b9f1296",
+        "rev": "0ce7afdb3edc0abacc1623fa7c9c5f85a33e87e7",
         "type": "github"
       },
       "original": {
@@ -152,11 +183,11 @@
     "src-entangler": {
       "flake": false,
       "locked": {
-        "lastModified": 1700671220,
-        "narHash": "sha256-slztRBqCwRu8xvaSw6t9NcHWKFIKJFvNIof5t6Nfeew=",
-        "ref": "master",
-        "rev": "bed91fb2c4aba5236a32317fd0d9e1c571333cbe",
-        "revCount": 155,
+        "lastModified": 1706095408,
+        "narHash": "sha256-SXDUFsSPopcYk/R4v/kuehFw6RhuvZ4K/l6MXjFbw0M=",
+        "ref": "refs/heads/master",
+        "rev": "2f6717d0bbe409b993bb2c15f6aefaa966f66ca2",
+        "revCount": 171,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/hardware/entangler-core.git"
       },
@@ -168,11 +199,11 @@
     "src-llama": {
       "flake": false,
       "locked": {
-        "lastModified": 1580958988,
-        "narHash": "sha256-kKJgQBHBlocwRiBbBYhggFC5XHFzxtzdFhZeCVUooG0=",
+        "lastModified": 1719654396,
+        "narHash": "sha256-hN5nDQGPn1yZ1TmHvfPSZfX2Q9lWXar7z82KS2E4qqE=",
         "ref": "refs/heads/master",
-        "rev": "c652a916288c151baee236329a9d00d0d1516550",
-        "revCount": 18,
+        "rev": "82c1e2841ce46852375e2c9ba1f9bb153d2a7da1",
+        "revCount": 19,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/llama.git"
       },
@@ -184,11 +215,11 @@
     "src-migen": {
       "flake": false,
       "locked": {
-        "lastModified": 1702942348,
-        "narHash": "sha256-gKIfHZxsv+jcgDFRW9mPqmwqbZXuRvXefkZcSFjOGHw=",
+        "lastModified": 1746709999,
+        "narHash": "sha256-JwvxF/xwtQpy/JnG7WXhx0y5k+dHDSwNUcMjgQaegbg=",
         "owner": "m-labs",
         "repo": "migen",
-        "rev": "50934ad10a87ade47219b796535978b9bdf24023",
+        "rev": "b92717a918c4d274d37f6eaff0c57ad689468173",
         "type": "github"
       },
       "original": {
@@ -200,11 +231,11 @@
     "src-misoc": {
       "flake": false,
       "locked": {
-        "lastModified": 1699352904,
-        "narHash": "sha256-SglyTmXOPv8jJOjwAjJrj/WhAkItQfUbvKfUqrynwRg=",
+        "lastModified": 1747128843,
+        "narHash": "sha256-TCFPoaQFaFCg3my3wyl3Gkz4ZnyzWa/ZXbcZG/OEsCU=",
         "ref": "refs/heads/master",
-        "rev": "a53859f2167c31ab5225b6c09f30cf05527b94f4",
-        "revCount": 2452,
+        "rev": "9e07cf5f3b7d4949d3b775d4d946ca22900ab528",
+        "revCount": 2498,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/m-labs/misoc.git"
@@ -218,11 +249,11 @@
     "src-ndscan": {
       "flake": false,
       "locked": {
-        "lastModified": 1712892179,
-        "narHash": "sha256-BMuT0DGDPtJ7PRTmMZ3dMJy32RRgXlnwBlYo67zeObo=",
+        "lastModified": 1755349800,
+        "narHash": "sha256-XdReZFgbG3H1S1m6bwF3E46x+OukVBtYyAiIfCXsvzg=",
         "owner": "OxfordIonTrapGroup",
         "repo": "ndscan",
-        "rev": "97d0ab4bc07ec3455f76a54119805759d1f7ba39",
+        "rev": "c951d583dd6d43c0acd1e54cad29c8af79de56f6",
         "type": "github"
       },
       "original": {
@@ -234,11 +265,11 @@
     "src-oitg": {
       "flake": false,
       "locked": {
-        "lastModified": 1712874276,
-        "narHash": "sha256-5AEvGWNxV6+p20f1ivH9jLqVLVhdaPOJuOTIrVYvR9c=",
+        "lastModified": 1755303327,
+        "narHash": "sha256-BMVTzqeJKYCqyw/K6RuqudHJdSj5Ja5eEZO4Gm40iSo=",
         "owner": "OxfordIonTrapGroup",
         "repo": "oitg",
-        "rev": "c172e73a2600feed4052b1b7edefaada7ee4e533",
+        "rev": "fb5547799818f1b2c9082c996f7b60192a67929d",
         "type": "github"
       },
       "original": {
@@ -250,11 +281,11 @@
     "src-oxart": {
       "flake": false,
       "locked": {
-        "lastModified": 1706899536,
-        "narHash": "sha256-kpUayMYT5OIwsmuSqOv7JMP4ECzyV6AbhOBVkcr/LQ0=",
+        "lastModified": 1760271165,
+        "narHash": "sha256-A5RSWjLe7xwm/i2BguhriD7rNG7ucr69VfRMXONF95U=",
         "ref": "refs/heads/master",
-        "rev": "92b076208202e20366b00a09a12f6f1b55934786",
-        "revCount": 728,
+        "rev": "8cbcd5b37147f3f1924e59fede4f3c9e7c70ab80",
+        "revCount": 758,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/oxart.git"
       },
@@ -266,16 +297,32 @@
     "src-oxart-devices": {
       "flake": false,
       "locked": {
-        "lastModified": 1703004547,
-        "narHash": "sha256-xfF/GNCFVVO3PE98GulliUnpBfJf8hAnOMOb7AWCxGA=",
+        "lastModified": 1760368414,
+        "narHash": "sha256-jk+DuiiJYJuH/5yZs7Suzf+is7h++kQYV/YJz+Mr6fA=",
         "owner": "OxfordIonTrapGroup",
         "repo": "oxart-devices",
-        "rev": "36d1f9887781344a1bcd8e9870af5168e7fea87c",
+        "rev": "8fc27b85d82e3810d876d886c543240b9208853e",
         "type": "github"
       },
       "original": {
         "owner": "OxfordIonTrapGroup",
         "repo": "oxart-devices",
+        "type": "github"
+      }
+    },
+    "src-pico": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1759248370,
+        "narHash": "sha256-6y2SRMEn7Y1RHTGRmy0Wf7bCB1mclevEsnKOZVvcIuk=",
+        "owner": "picotech",
+        "repo": "picosdk-python-wrappers",
+        "rev": "1fae70512dd8173f85591975cabfa0ba28442bee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "picotech",
+        "repo": "picosdk-python-wrappers",
         "type": "github"
       }
     },
@@ -292,6 +339,22 @@
       "original": {
         "owner": "m-labs",
         "repo": "pythonparser",
+        "type": "github"
+      }
+    },
+    "src-wand": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1753962311,
+        "narHash": "sha256-4UenUVXGvCS+yWfBbRJcaMoaHLSzB0vW2VUEdFZHFCI=",
+        "owner": "OxfordIonTrapGroup",
+        "repo": "wand",
+        "rev": "5c142feb5fd31ea6101735cf5ed8816278bae202",
+        "type": "github"
+      },
+      "original": {
+        "owner": "OxfordIonTrapGroup",
+        "repo": "wand",
         "type": "github"
       }
     },

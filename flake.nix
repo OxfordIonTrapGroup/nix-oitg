@@ -2,7 +2,7 @@
   description = "Environment for running ARTIQ master in lab one/HOA2";
 
   inputs = {
-    artiq.url = "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git";
+    artiq.url = "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git?rev=cd02c18ba7a8abf5dd000e9378c3613ad0e0d949";
 
     # Oxford-flavoured ARTIQ packages. We pull them in as flake inputs so we can
     # conveniently update them using `nix lock`, etc., rather than manually having to
@@ -31,9 +31,17 @@
       url = "github:OxfordIonTrapGroup/oxart-devices";
       flake = false;
     };
+    src-wand = {
+      url = "github:OxfordIonTrapGroup/wand";
+      flake = false;
+    };
+    src-pico = {
+      url = "github:picotech/picosdk-python-wrappers";
+      flake = false;
+    };
   };
   outputs = { self, artiq, src-andorEmccd, src-llama, src-ndscan, src-oitg
-    , src-oxart, src-oxart-devices }:
+    , src-oxart, src-oxart-devices, src-wand, src-pico }:
     let
       nixpkgs = artiq.nixpkgs;
       sipyco = artiq.inputs.sipyco;
@@ -41,10 +49,14 @@
         name = "andorEmccd";
         src = src-andorEmccd;
         propagatedBuildInputs = [ nixpkgs.python3Packages.numpy ];
+        pyproject = true;
+        build-system = [nixpkgs.python3Packages.setuptools];
       };
       llama = nixpkgs.python3Packages.buildPythonPackage {
         name = "llama";
         src = src-llama;
+        pyproject = true;
+        build-system = [nixpkgs.python3Packages.setuptools];
         propagatedBuildInputs = [
           nixpkgs.python3Packages.aiohttp
           sipyco.packages.x86_64-linux.sipyco
@@ -53,12 +65,14 @@
       oitg = nixpkgs.python3Packages.buildPythonPackage {
         name = "oitg";
         src = src-oitg;
-        format = "pyproject";
+        pyproject = true;
+        build-system = [nixpkgs.python3Packages.setuptools];
         propagatedBuildInputs = with nixpkgs.python3Packages; [
           h5py
           scipy
           statsmodels
           nixpkgs.python3Packages.poetry-core
+          nixpkgs.python3Packages.hatchling
           nixpkgs.python3Packages.poetry-dynamic-versioning
         ];
         # Whatever magic `setup.py test` does by default fails for oitg.
@@ -69,7 +83,8 @@
       ndscan = nixpkgs.python3Packages.buildPythonPackage {
         name = "ndscan";
         src = src-ndscan;
-        format = "pyproject";
+        pyproject = true;
+        build-system = [nixpkgs.python3Packages.setuptools];
         propagatedBuildInputs = [
           artiq.packages.x86_64-linux.artiq
           oitg
@@ -95,6 +110,8 @@
       oxart = nixpkgs.python3Packages.buildPythonPackage {
         name = "oxart";
         src = src-oxart;
+        pyproject = true;
+        build-system = [nixpkgs.python3Packages.setuptools];
         propagatedBuildInputs = [ artiq.packages.x86_64-linux.artiq oitg ];
         installCheckPhase = ''
           ${nixpkgs.python3.interpreter} -m unittest discover test
@@ -104,9 +121,13 @@
       oxart-devices = nixpkgs.python3Packages.buildPythonPackage {
         name = "oxart-devices";
         src = src-oxart-devices;
-        format = "pyproject";
+        pyproject = true;
+        build-system = [nixpkgs.python3Packages.setuptools];
         propagatedBuildInputs = [
           nixpkgs.python3Packages.appdirs
+          nixpkgs.python3Packages.influxdb
+          nixpkgs.python3Packages.pyserial
+          nixpkgs.python3Packages.pyzmq
           oitg
           sipyco.packages.x86_64-linux.sipyco
         ];
@@ -119,8 +140,48 @@
         # (that also require Windows and/or hardware).
         doCheck = false;
       };
+
+      toptica-lasersdk = nixpkgs.python3Packages.buildPythonPackage rec {
+          pname = "toptica-lasersdk";
+          version = "3.2.0";
+          pyproject = true;
+          src = nixpkgs.fetchPypi {
+            pname = "toptica_lasersdk";
+            inherit version;
+            hash = "sha256-UNazng4Za3CZeG7eDq0b+l7gmESEXIU8WMLWGGysmBg=";
+            };
+          build-system = [
+            nixpkgs.python3Packages.setuptools
+            ];
+          dependencies = [
+            nixpkgs.python3Packages.ifaddr
+            nixpkgs.python3Packages.pyserial
+            ];
+          pythonImportsCheck = [
+            "toptica.lasersdk.dlcpro.v2_2_0"
+            ];
+        };
+      wand = nixpkgs.python3Packages.buildPythonPackage {
+        name = "wand";
+        src = src-wand;
+        pyproject = true;
+        build-system = [nixpkgs.python3Packages.setuptools];
+        propagatedBuildInputs = with nixpkgs.python3Packages; [
+          setuptools
+        ];
+      };
+      pico = nixpkgs.python3Packages.buildPythonPackage {
+        name = "pico";
+        src = src-pico;
+        pyproject = true;
+        build-system = [nixpkgs.python3Packages.setuptools];
+        propagatedBuildInputs = with nixpkgs.python3Packages; [
+          setuptools
+          numpy
+        ];
+      };
       python-env = (nixpkgs.python3.withPackages (ps:
-        (with ps; [ aiohttp h5py influxdb llvmlite numba pyzmq ]) ++ [
+        (with ps; [ aiohttp h5py influxdb numba pyzmq psutil llvmlite matplotlib]) ++ [
           # ARTIQ will pull in a large number of transitive dependencies, most of which
           # we also rely on. Currently, it is a bit overly generous, though, in that it
           # pulls in all the requirements for a full GUI and firmware development
@@ -128,12 +189,15 @@
           # issue.
           artiq.packages.x86_64-linux.artiq
           artiq.packages.x86_64-linux.entangler
+          toptica-lasersdk
+          wand
+          pico
           andorEmccd
           llama
           ndscan
           oitg
           oxart
-          oxart-devices
+          #oxart-devices
         ]));
       artiq-master-dev = nixpkgs.mkShell {
         name = "artiq-master-dev";
@@ -146,6 +210,8 @@
           nixpkgs.libusb-compat-0_1
         ];
         shellHook = ''
+          export PYTHONPATH=$PYTHONPATH:$HOME/scratch/caqtus
+          export PYTHONPATH=$PYTHONPATH:$HOME/scratch/comet
           if [ -z "$OITG_SCRATCH_DIR" ]; then
             echo "OITG_SCRATCH_DIR environment variable not set, defaulting to ~/scratch."
             export OITG_SCRATCH_DIR=$HOME/scratch
@@ -156,6 +222,11 @@
             ./src/setup-artiq-master-dev.sh
           } ${python-env} ${python-env.sitePackages} || exit 1
           source $OITG_SCRATCH_DIR/nix-oitg-venvs/artiq-master-dev/bin/activate || exit 1
+          
+          # Add pico libraries to path
+          export LD_LIBRARY_PATH=/opt/picoscope/lib/
+          #ln -s /lib/x86_64-linux-gnu/libudev.so.1 /opt/picoscope/lib/libudev.so.1
+          #ln -s /lib/x86_64-linux-gnu/libusb-1.0.so.0 /opt/picoscope/lib/libusb-1.0.so.0
         '';
       };
     in {
