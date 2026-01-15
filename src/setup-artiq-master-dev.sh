@@ -139,7 +139,18 @@ if [[ ! -d ${venv_site_packages} ]]; then
     diag "packages."
     exit 2
 fi
-echo "${nix_python_root}/${nix_site_pkgs_subdir}" > ${venv_site_packages}/nix.pth
+
+# Choose file name that is virtually guaranteed to be sorted after all library names
+# (yet is POSIX-compatible just to be safe) – recent Python/setuptools versions use
+# <packagename>.pth for editable-mode installs and we want those to take precedence.
+pth_name="zzzzzzz_nix.pth"
+echo "${nix_python_root}/${nix_site_pkgs_subdir}" > ${venv_site_packages}/${pth_name}
+
+# Clean up legacy links without the sort order prefix.
+if [[ -e ${venv_site_packages}/nix.pth ]]; then
+    diag "Removing old ${venv_site_packages}/nix.pth file; recreated as ${pth_name}."
+    rm "${venv_site_packages}/nix.pth"
+fi
 
 echo "Activated nix-oitg Nix environment with nested Python venv ${blue}${venv_name}${reset}."
 echo "To exit the Nix shell, use ${blue}exit${reset} or ${blue}Ctrl+D${reset}."
