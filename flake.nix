@@ -2,7 +2,7 @@
   description = "Environment for running ARTIQ master in lab one/HOA2";
 
   inputs = {
-    artiq.url = "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git";
+    artiq.url = "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git?rev=5472ed3e1c6012825d927c36209d84dacf2fb0f9";
 
     # Oxford-flavoured ARTIQ packages. We pull them in as flake inputs so we can
     # conveniently update them using `nix lock`, etc., rather than manually having to
@@ -84,11 +84,15 @@
         # FIXME: qasync/sipyco/oitg dependencies which explicitly specify a Git source
         # repo do not seem to be matched by the packages pulled in via Nix; what is the
         # correct approach here?
+        #
+        # Also relax the qasync dependency, as the qasync threading bug does not matter
+        # for server-side operation and nixpkgs currently pulls in 0.25 still.
         postPatch = ''
           sed -i -e "s/^pyqtgraph = .*//" pyproject.toml
           sed -i -e "s/^qasync = .*//" pyproject.toml
           sed -i -e "s/^sipyco = .*//" pyproject.toml
           sed -i -e "s/^oitg = .*//" pyproject.toml
+          sed -i -e "s/qasync>=0.27.1/qasync/" pyproject.toml
         '';
         dontWrapQtApps = true; # Pulled in via the artiq package; we don't care.
       };
