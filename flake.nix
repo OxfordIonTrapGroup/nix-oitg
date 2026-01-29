@@ -2,7 +2,7 @@
   description = "Environment for running ARTIQ master in lab one/HOA2";
 
   inputs = {
-    artiq.url = "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git?rev=5472ed3e1c6012825d927c36209d84dacf2fb0f9";
+    artiq.url = "git+ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git?ref=release-8-oitg";
 
     # Oxford-flavoured ARTIQ packages. We pull them in as flake inputs so we can
     # conveniently update them using `nix lock`, etc., rather than manually having to
