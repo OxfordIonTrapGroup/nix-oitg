@@ -122,6 +122,7 @@
           nixpkgs.python3Packages.pyzmq
           oitg
           sipyco.packages.x86_64-linux.sipyco
+          artiq.packages.x86_64-linux.asyncserial
         ];
         # Need to manually remove .pyc files conflicting with oxart (both share the
         # oxart.* namespace).
