@@ -140,7 +140,6 @@
           # install (Qt, Rust, etc.). Could slim down if disk usage ever becomes an
           # issue.
           artiq.packages.x86_64-linux.artiq
-          artiq.packages.x86_64-linux.entangler
           andorEmccd
           llama
           ndscan
