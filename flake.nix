@@ -40,11 +40,15 @@
       andorEmccd = nixpkgs.python3Packages.buildPythonPackage {
         name = "andorEmccd";
         src = src-andorEmccd;
+        pyproject = true;
+        build-system = [ nixpkgs.python3Packages.setuptools ];
         propagatedBuildInputs = [ nixpkgs.python3Packages.numpy ];
       };
       llama = nixpkgs.python3Packages.buildPythonPackage {
         name = "llama";
         src = src-llama;
+        pyproject = true;
+        build-system = [ nixpkgs.python3Packages.setuptools ];
         propagatedBuildInputs = [
           nixpkgs.python3Packages.aiohttp
           sipyco.packages.x86_64-linux.sipyco
@@ -99,6 +103,8 @@
       oxart = nixpkgs.python3Packages.buildPythonPackage {
         name = "oxart";
         src = src-oxart;
+        pyproject = true;
+        build-system = [ nixpkgs.python3Packages.setuptools ];
         propagatedBuildInputs = [ artiq.packages.x86_64-linux.artiq oitg ];
         installCheckPhase = ''
           ${nixpkgs.python3.interpreter} -m unittest discover test
