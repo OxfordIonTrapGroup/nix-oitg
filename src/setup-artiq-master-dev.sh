@@ -128,7 +128,7 @@ fi
 
 # Work around broken Python 3.12 point release that won't be fixed:
 # https://github.com/python/cpython/issues/132361
-sed -ie 's/PS1="("'\''(${venv_name}) '\''") \${PS1:-}"/PS1="(${venv_name}) \${PS1:-}"/' "${venv_path}/bin/activate"
+sed -ie 's/PS1="("'\'"(${venv_name}) "\''") \${PS1:-}"/PS1="('"${venv_name}"') \${PS1:-}"/' "${venv_path}/bin/activate"
 
 # Always update the .pth file we use for the venv to be able to find packages
 # provided via Nix to make sure it continues to reference the right set of
