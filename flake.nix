@@ -32,8 +32,17 @@
       flake = false;
     };
   };
-  outputs = { self, artiq, src-andorEmccd, src-llama, src-ndscan, src-oitg
-    , src-oxart, src-oxart-devices }:
+  outputs =
+    {
+      self,
+      artiq,
+      src-andorEmccd,
+      src-llama,
+      src-ndscan,
+      src-oitg,
+      src-oxart,
+      src-oxart-devices,
+    }:
     let
       nixpkgs = artiq.nixpkgs;
       sipyco = artiq.inputs.sipyco;
@@ -99,7 +108,10 @@
       oxart = nixpkgs.python3Packages.buildPythonPackage {
         name = "oxart";
         src = src-oxart;
-        propagatedBuildInputs = [ artiq.packages.x86_64-linux.artiq oitg ];
+        propagatedBuildInputs = [
+          artiq.packages.x86_64-linux.artiq
+          oitg
+        ];
         installCheckPhase = ''
           ${nixpkgs.python3.interpreter} -m unittest discover test
         '';
@@ -126,22 +138,34 @@
         # (that also require Windows and/or hardware).
         doCheck = false;
       };
-      python-env = (nixpkgs.python3.withPackages (ps:
-        (with ps; [ aiohttp h5py influxdb llvmlite numba pyzmq ]) ++ [
-          # ARTIQ will pull in a large number of transitive dependencies, most of which
-          # we also rely on. Currently, it is a bit overly generous, though, in that it
-          # pulls in all the requirements for a full GUI and firmware development
-          # install (Qt, Rust, etc.). Could slim down if disk usage ever becomes an
-          # issue.
-          artiq.packages.x86_64-linux.artiq
-          artiq.packages.x86_64-linux.entangler
-          andorEmccd
-          llama
-          ndscan
-          oitg
-          oxart
-          oxart-devices
-        ]));
+      python-env = (
+        nixpkgs.python3.withPackages (
+          ps:
+          (with ps; [
+            aiohttp
+            h5py
+            influxdb
+            llvmlite
+            numba
+            pyzmq
+          ])
+          ++ [
+            # ARTIQ will pull in a large number of transitive dependencies, most of which
+            # we also rely on. Currently, it is a bit overly generous, though, in that it
+            # pulls in all the requirements for a full GUI and firmware development
+            # install (Qt, Rust, etc.). Could slim down if disk usage ever becomes an
+            # issue.
+            artiq.packages.x86_64-linux.artiq
+            artiq.packages.x86_64-linux.entangler
+            andorEmccd
+            llama
+            ndscan
+            oitg
+            oxart
+            oxart-devices
+          ]
+        )
+      );
       artiq-master-dev = nixpkgs.mkShell {
         name = "artiq-master-dev";
         buildInputs = [
@@ -159,24 +183,29 @@
             export QT_PLUGIN_PATH=${nixpkgs.qt5.qtbase}/${nixpkgs.qt5.qtbase.dev.qtPluginPrefix}
             export QML2_IMPORT_PATH=${nixpkgs.qt5.qtbase}/${nixpkgs.qt5.qtbase.dev.qtQmlPrefix}
           fi
-          ${
-            ./src/setup-artiq-master-dev.sh
-          } ${python-env} ${python-env.sitePackages} || exit 1
+          ${./src/setup-artiq-master-dev.sh} ${python-env} ${python-env.sitePackages} || exit 1
           source $OITG_SCRATCH_DIR/nix-oitg-venvs/artiq-master-dev/bin/activate || exit 1
         '';
       };
-    in {
+    in
+    {
       # Allow explicit use from outside the flake, in case we want to add other targets
       # or build on this in the future.
       inherit artiq-master-dev;
-      inherit andorEmccd llama oitg ndscan oxart oxart-devices;
+      inherit
+        andorEmccd
+        llama
+        oitg
+        ndscan
+        oxart
+        oxart-devices
+        ;
 
       defaultPackage.x86_64-linux = artiq-master-dev;
     };
 
   nixConfig = {
-    extra-trusted-public-keys =
-      "buildsvr-1:3EJ00F+rbqkxwDTforU07Jj1Rzq3B+uVWc70+8fXv/s= nixbld.m-labs.hk-1:5aSRVA5b320xbNvu30tqxVPXpld73bhtOeH6uAjRyHc=";
+    extra-trusted-public-keys = "buildsvr-1:3EJ00F+rbqkxwDTforU07Jj1Rzq3B+uVWc70+8fXv/s= nixbld.m-labs.hk-1:5aSRVA5b320xbNvu30tqxVPXpld73bhtOeH6uAjRyHc=";
     extra-substituters = "ssh://nix-ssh@10.255.6.197 https://nixbld.m-labs.hk";
   };
 }
