@@ -32,8 +32,17 @@
       flake = false;
     };
   };
-  outputs = { self, artiq, src-andorEmccd, src-llama, src-ndscan, src-oitg
-    , src-oxart, src-oxart-devices }:
+  outputs =
+    {
+      self,
+      artiq,
+      src-andorEmccd,
+      src-llama,
+      src-ndscan,
+      src-oitg,
+      src-oxart,
+      src-oxart-devices,
+    }:
     let
       nixpkgs = artiq.nixpkgs;
       sipyco = artiq.inputs.sipyco;
@@ -47,10 +56,10 @@
       llama = nixpkgs.python3Packages.buildPythonPackage {
         name = "llama";
         src = src-llama;
-        pyproject = true;
-        build-system = [ nixpkgs.python3Packages.setuptools ];
+        format = "pyproject";
         propagatedBuildInputs = [
           nixpkgs.python3Packages.aiohttp
+          nixpkgs.python3Packages.hatchling
           sipyco.packages.x86_64-linux.sipyco
         ];
       };
@@ -62,13 +71,8 @@
           h5py
           scipy
           statsmodels
-          nixpkgs.python3Packages.poetry-core
-          nixpkgs.python3Packages.poetry-dynamic-versioning
+          nixpkgs.python3Packages.hatchling
         ];
-        # Whatever magic `setup.py test` does by default fails for oitg.
-        installCheckPhase = ''
-          ${nixpkgs.python3.interpreter} -m unittest discover test
-        '';
       };
       ndscan = nixpkgs.python3Packages.buildPythonPackage {
         name = "ndscan";
@@ -103,12 +107,13 @@
       oxart = nixpkgs.python3Packages.buildPythonPackage {
         name = "oxart";
         src = src-oxart;
-        pyproject = true;
-        build-system = [ nixpkgs.python3Packages.setuptools ];
-        propagatedBuildInputs = [ artiq.packages.x86_64-linux.artiq oitg ];
-        installCheckPhase = ''
-          ${nixpkgs.python3.interpreter} -m unittest discover test
-        '';
+        format = "pyproject";
+        propagatedBuildInputs = [
+          artiq.packages.x86_64-linux.artiq
+          ndscan
+          nixpkgs.python3Packages.numba
+          oitg
+        ];
         dontWrapQtApps = true; # Pulled in via the artiq package; we don't care.
       };
       oxart-devices = nixpkgs.python3Packages.buildPythonPackage {
@@ -120,6 +125,7 @@
           nixpkgs.python3Packages.influxdb
           nixpkgs.python3Packages.pyserial
           nixpkgs.python3Packages.pyzmq
+          nixpkgs.python3Packages.uv-dynamic-versioning
           oitg
           sipyco.packages.x86_64-linux.sipyco
           artiq.packages.x86_64-linux.asyncserial
@@ -128,26 +134,39 @@
         # oxart.* namespace).
         postFixup = ''
           rm -r $out/${nixpkgs.python3.sitePackages}/oxart/__pycache__
+          rm -r $out/${nixpkgs.python3.sitePackages}/oxart/__init__.py
         '';
         # Auto-discovery pulls in some ``test`` modules for manual interactive testing
         # (that also require Windows and/or hardware).
         doCheck = false;
       };
-      python-env = (nixpkgs.python3.withPackages (ps:
-        (with ps; [ aiohttp h5py influxdb llvmlite numba pyzmq ]) ++ [
-          # ARTIQ will pull in a large number of transitive dependencies, most of which
-          # we also rely on. Currently, it is a bit overly generous, though, in that it
-          # pulls in all the requirements for a full GUI and firmware development
-          # install (Qt, Rust, etc.). Could slim down if disk usage ever becomes an
-          # issue.
-          artiq.packages.x86_64-linux.artiq
-          andorEmccd
-          llama
-          ndscan
-          oitg
-          oxart
-          oxart-devices
-        ]));
+      python-env = (
+        nixpkgs.python3.withPackages (
+          ps:
+          (with ps; [
+            aiohttp
+            h5py
+            influxdb
+            llvmlite
+            numba
+            pyzmq
+          ])
+          ++ [
+            # ARTIQ will pull in a large number of transitive dependencies, most of which
+            # we also rely on. Currently, it is a bit overly generous, though, in that it
+            # pulls in all the requirements for a full GUI and firmware development
+            # install (Qt, Rust, etc.). Could slim down if disk usage ever becomes an
+            # issue.
+            artiq.packages.x86_64-linux.artiq
+            andorEmccd
+            llama
+            ndscan
+            oitg
+            oxart
+            oxart-devices
+          ]
+        )
+      );
       artiq-master-dev = nixpkgs.mkShell {
         name = "artiq-master-dev";
         buildInputs = [
@@ -165,24 +184,29 @@
             export QT_PLUGIN_PATH=${nixpkgs.qt5.qtbase}/${nixpkgs.qt5.qtbase.dev.qtPluginPrefix}
             export QML2_IMPORT_PATH=${nixpkgs.qt5.qtbase}/${nixpkgs.qt5.qtbase.dev.qtQmlPrefix}
           fi
-          ${
-            ./src/setup-artiq-master-dev.sh
-          } ${python-env} ${python-env.sitePackages} || exit 1
+          ${./src/setup-artiq-master-dev.sh} ${python-env} ${python-env.sitePackages} || exit 1
           source $OITG_SCRATCH_DIR/nix-oitg-venvs/artiq-master-dev/bin/activate || exit 1
         '';
       };
-    in {
+    in
+    {
       # Allow explicit use from outside the flake, in case we want to add other targets
       # or build on this in the future.
       inherit artiq-master-dev;
-      inherit andorEmccd llama oitg ndscan oxart oxart-devices;
+      inherit
+        andorEmccd
+        llama
+        oitg
+        ndscan
+        oxart
+        oxart-devices
+        ;
 
       defaultPackage.x86_64-linux = artiq-master-dev;
     };
 
   nixConfig = {
-    extra-trusted-public-keys =
-      "buildsvr-1:3EJ00F+rbqkxwDTforU07Jj1Rzq3B+uVWc70+8fXv/s= nixbld.m-labs.hk-1:5aSRVA5b320xbNvu30tqxVPXpld73bhtOeH6uAjRyHc=";
+    extra-trusted-public-keys = "buildsvr-1:3EJ00F+rbqkxwDTforU07Jj1Rzq3B+uVWc70+8fXv/s= nixbld.m-labs.hk-1:5aSRVA5b320xbNvu30tqxVPXpld73bhtOeH6uAjRyHc=";
     extra-substituters = "ssh://nix-ssh@10.255.6.197 https://nixbld.m-labs.hk";
   };
 }
