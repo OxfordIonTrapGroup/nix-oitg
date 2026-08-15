@@ -108,9 +108,13 @@
       oxart = nixpkgs.python3Packages.buildPythonPackage {
         name = "oxart";
         src = src-oxart;
+        format = "pyproject";
         propagatedBuildInputs = [
           artiq.packages.x86_64-linux.artiq
+          ndscan
           oitg
+          nixpkgs.python3Packages.hatchling
+          nixpkgs.python3Packages.numba
         ];
         installCheckPhase = ''
           ${nixpkgs.python3.interpreter} -m unittest discover test
@@ -129,10 +133,11 @@
           oitg
           sipyco.packages.x86_64-linux.sipyco
         ];
-        # Need to manually remove .pyc files conflicting with oxart (both share the
+        # Need to manually remove files conflicting with oxart (both share the
         # oxart.* namespace).
         postFixup = ''
           rm -r $out/${nixpkgs.python3.sitePackages}/oxart/__pycache__
+          rm -r $out/${nixpkgs.python3.sitePackages}/oxart/__init__.py
         '';
         # Auto-discovery pulls in some ``test`` modules for manual interactive testing
         # (that also require Windows and/or hardware).

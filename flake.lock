@@ -251,11 +251,11 @@
     "src-oxart": {
       "flake": false,
       "locked": {
-        "lastModified": 1768495995,
-        "narHash": "sha256-35WQ8wEs3BQfF29M1+mA5h8FbW1WMItpieAwfHpSeV4=",
+        "lastModified": 1786486023,
+        "narHash": "sha256-LGV/RTWckMU++Is/O5iZK48kNjMOtMOvB0U2Jb0AAdI=",
         "ref": "refs/heads/master",
-        "rev": "488d18391f72a9dae3653cfebac4307944304b8d",
-        "revCount": 764,
+        "rev": "d33ad99348455860714dd927a4b30f6e3b42bfc2",
+        "revCount": 798,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/oxart.git"
       },
