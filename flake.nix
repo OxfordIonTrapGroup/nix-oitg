@@ -54,8 +54,10 @@
       llama = nixpkgs.python3Packages.buildPythonPackage {
         name = "llama";
         src = src-llama;
+        format = "pyproject";
         propagatedBuildInputs = [
           nixpkgs.python3Packages.aiohttp
+          nixpkgs.python3Packages.hatchling
           sipyco.packages.x86_64-linux.sipyco
         ];
       };
@@ -67,13 +69,8 @@
           h5py
           scipy
           statsmodels
-          nixpkgs.python3Packages.poetry-core
-          nixpkgs.python3Packages.poetry-dynamic-versioning
+          nixpkgs.python3Packages.hatchling
         ];
-        # Whatever magic `setup.py test` does by default fails for oitg.
-        installCheckPhase = ''
-          ${nixpkgs.python3.interpreter} -m unittest discover test
-        '';
       };
       ndscan = nixpkgs.python3Packages.buildPythonPackage {
         name = "ndscan";
@@ -101,7 +98,7 @@
           sed -i -e "s/^qasync = .*//" pyproject.toml
           sed -i -e "s/^sipyco = .*//" pyproject.toml
           sed -i -e "s/^oitg = .*//" pyproject.toml
-          sed -i -e "s/qasync>=0.27.1/qasync/" pyproject.toml
+          sed -i -e "s/qasync>=0.28.0/qasync/" pyproject.toml
         '';
         dontWrapQtApps = true; # Pulled in via the artiq package; we don't care.
       };
@@ -130,6 +127,7 @@
           nixpkgs.python3Packages.influxdb
           nixpkgs.python3Packages.pyserial
           nixpkgs.python3Packages.pyzmq
+          nixpkgs.python3Packages.uv-dynamic-versioning
           oitg
           sipyco.packages.x86_64-linux.sipyco
         ];

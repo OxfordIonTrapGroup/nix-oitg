@@ -12,11 +12,11 @@
         "src-pythonparser": "src-pythonparser"
       },
       "locked": {
-        "lastModified": 1759840606,
-        "narHash": "sha256-Nn4EVFU6AglNHFMbHirMY3fsczP2YUpZJKPSbTpg3EY=",
+        "lastModified": 1784284674,
+        "narHash": "sha256-vo4q8Ehohoj22T7m3lXwjXDPZZstP8bb5RDEzw4KpJ4=",
         "ref": "release-8-oitg",
-        "rev": "a89bc573067b0f0f48a3bf4bf72f5237978947b8",
-        "revCount": 10399,
+        "rev": "0b3b4f0eae0885afcf32f012bb63433858a20ed3",
+        "revCount": 10404,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/artiq.git"
       },
@@ -137,11 +137,11 @@
     "src-andorEmccd": {
       "flake": false,
       "locked": {
-        "lastModified": 1647268041,
-        "narHash": "sha256-oXyY+4KkTKYaQYS8KCNcaG/xhNfMrjgozvsTb4AxamM=",
+        "lastModified": 1777043775,
+        "narHash": "sha256-IUPQPJGKNq3teRY3aEBZ/12CsuW3pCEyuV2gN1jP3gM=",
         "owner": "dnadlinger",
         "repo": "andorEmccd",
-        "rev": "c3b43bdaf8ef7806558ba4c51329d1a16c0a5ff8",
+        "rev": "e165b29ed1abd5a4e337d4c6a91b4e7572c5ce27",
         "type": "github"
       },
       "original": {
@@ -169,11 +169,11 @@
     "src-llama": {
       "flake": false,
       "locked": {
-        "lastModified": 1719654396,
-        "narHash": "sha256-hN5nDQGPn1yZ1TmHvfPSZfX2Q9lWXar7z82KS2E4qqE=",
+        "lastModified": 1770504542,
+        "narHash": "sha256-o9PyXFLt7MX5mbVpC8J1tB+LYCC/Tfs9n2RBRQdmhDo=",
         "ref": "refs/heads/master",
-        "rev": "82c1e2841ce46852375e2c9ba1f9bb153d2a7da1",
-        "revCount": 19,
+        "rev": "aaebe6304ad4fdb95e65d67868c19f1a274dc9c6",
+        "revCount": 30,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/llama.git"
       },
@@ -219,11 +219,11 @@
     "src-ndscan": {
       "flake": false,
       "locked": {
-        "lastModified": 1768404255,
-        "narHash": "sha256-/aDFb5+gN9fuz7HZffxDd6w7SKMa5oWo6OgUfkuSovg=",
+        "lastModified": 1786728593,
+        "narHash": "sha256-UAtHFfjJBggsyGGIhw8Nwr4XZFTcrNjDp7apALuhzUM=",
         "owner": "OxfordIonTrapGroup",
         "repo": "ndscan",
-        "rev": "20e935199be62d10685be88bd59b75c021b6a459",
+        "rev": "136f4e0167a2cda1d925b1ac7447662e7e78348e",
         "type": "github"
       },
       "original": {
@@ -235,11 +235,11 @@
     "src-oitg": {
       "flake": false,
       "locked": {
-        "lastModified": 1755303327,
-        "narHash": "sha256-BMVTzqeJKYCqyw/K6RuqudHJdSj5Ja5eEZO4Gm40iSo=",
+        "lastModified": 1786758559,
+        "narHash": "sha256-9KeBGNXbFIUF6sR2PrO9uzOAEcKKdhR/IIGNAdPLak0=",
         "owner": "OxfordIonTrapGroup",
         "repo": "oitg",
-        "rev": "fb5547799818f1b2c9082c996f7b60192a67929d",
+        "rev": "ab9bb47c69b66bcb31ee94d6f5e1ed11ea968e34",
         "type": "github"
       },
       "original": {
@@ -251,11 +251,11 @@
     "src-oxart": {
       "flake": false,
       "locked": {
-        "lastModified": 1786486023,
-        "narHash": "sha256-LGV/RTWckMU++Is/O5iZK48kNjMOtMOvB0U2Jb0AAdI=",
+        "lastModified": 1786756713,
+        "narHash": "sha256-CIIiFAMglV1JOwc0wjYl2L5N2EkkwdnhAzW2Hv1h8cw=",
         "ref": "refs/heads/master",
-        "rev": "d33ad99348455860714dd927a4b30f6e3b42bfc2",
-        "revCount": 798,
+        "rev": "76f69026d3e92e3109c786e0ff02387ae80d4639",
+        "revCount": 803,
         "type": "git",
         "url": "ssh://git@gitlab.physics.ox.ac.uk/ion-trap/oxart.git"
       },
@@ -267,11 +267,11 @@
     "src-oxart-devices": {
       "flake": false,
       "locked": {
-        "lastModified": 1768526815,
-        "narHash": "sha256-NXaa7DQJo/Xi25IycFKOds1vN+W9g6qheD5bZ14/Uss=",
+        "lastModified": 1783690543,
+        "narHash": "sha256-dbgJJpF0jQB0idLv23iKCRAQly1t2itG36gLbvylAJc=",
         "owner": "OxfordIonTrapGroup",
         "repo": "oxart-devices",
-        "rev": "58ce79891e34a93669380fcc5ffc38d30244887e",
+        "rev": "ebf8d04a2a9866a161ca20783510996234389c12",
         "type": "github"
       },
       "original": {
