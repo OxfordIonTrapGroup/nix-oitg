@@ -148,7 +148,21 @@ fi
 # (yet is POSIX-compatible just to be safe) – recent Python/setuptools versions use
 # <packagename>.pth for editable-mode installs and we want those to take precedence.
 pth_name="zzzzzzz_nix.pth"
-echo "${nix_python_root}/${nix_site_pkgs_subdir}" > ${venv_site_packages}/${pth_name}
+# We need to do the write atomically; otherwise, two shells opened at the same time to
+# run a Python script could run into a race condition (echo > … truncates the file
+# before writing). Save it to a temporary file first, then rename it to the target file
+# name, which is atomic (on the same fs).
+(
+    set -e
+
+    pth_path="${venv_site_packages}/${pth_name}"
+    tmp=$(mktemp "${pth_path}.XXXXXX")
+    trap 'rm -f -- "$tmp"' EXIT
+
+    echo "${nix_python_root}/${nix_site_pkgs_subdir}" > "$tmp"
+    chmod 644 "$tmp"
+    mv -fT -- "$tmp" "$pth_path"
+)
 
 # Clean up legacy links without the sort order prefix.
 if [[ -e ${venv_site_packages}/nix.pth ]]; then
