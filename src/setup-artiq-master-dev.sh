@@ -54,8 +54,10 @@ if [[ -d "${venv_path}" ]]; then
     # to only apply to in-place upgrades.
     #
     # Only run venv --upgrade when there is a mismatch as it causes noticeable latency.
+    # bin/python may be missing if it was a broken symlink removed above; treat this
+    # as a mismatch, as venv --upgrade recreates it.
     nix_python_base=$(python -c "import sys; print(sys.base_prefix)")
-    venv_python_base=$(${venv_path}/bin/python -c "import sys; print(sys.base_prefix)")
+    venv_python_base=$("${venv_path}/bin/python" -c "import sys; print(sys.base_prefix)" 2>/dev/null || true)
     if [[ ! $nix_python_base == $venv_python_base ]]; then
         diag "Attempting to upgrade Python version in venv."
         python -m venv --upgrade "${venv_path}"
@@ -70,7 +72,7 @@ if [[ -d "${venv_path}" ]]; then
     # underlying Python interpreter, stripping away both the venv and the Nix python-env
     # layers.
     nix_python_base=$(python -c "import sys; print(sys.base_prefix)")
-    venv_python_base=$(${venv_path}/bin/python -c "import sys; print(sys.base_prefix)")
+    venv_python_base=$("${venv_path}/bin/python" -c "import sys; print(sys.base_prefix)" || true)
     if [[ ! $nix_python_base == $venv_python_base ]]; then
         echo ""
         warn "Error: Python version in ${venv_name} venv is out of sync with Nix flake."
